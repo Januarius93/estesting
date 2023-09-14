@@ -37,3 +37,5 @@ build/
 /estesting-test-framework/ui-testing/mvnw.cmd
 /estesting-test-framework/api-testing/mvnw
 /estesting-test-framework/api-testing/mvnw.cmd
+/estestingportal/mvnw
+/estestingportal/mvnw.cmd
