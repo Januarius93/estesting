@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+/estesting-test-framework/ui-testing/.mvn/
+/estesting-test-framework/api-testing/.mvn/
+/estesting-test-framework/ui-testing/mvnw
+/estesting-test-framework/ui-testing/mvnw.cmd
+/estesting-test-framework/api-testing/mvnw
+/estesting-test-framework/api-testing/mvnw.cmd
