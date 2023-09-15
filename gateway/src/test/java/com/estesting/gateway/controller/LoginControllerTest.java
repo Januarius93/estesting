@@ -1,9 +1,10 @@
 package com.estesting.gateway.controller;
 
 import com.estesting.gateway.controller.login.LoginController;
-import com.estesting.gateway.model.User;
+import com.estesting.gateway.model.Credentials;
 import lombok.Getter;
 import lombok.Setter;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -29,7 +30,7 @@ import org.testng.annotations.Test;
 @SpringBootTest
 @Import(LoginController.class)
 public class LoginControllerTest extends AbstractTestNGSpringContextTests {
-    User user;
+    Credentials credentials;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -43,16 +44,18 @@ public class LoginControllerTest extends AbstractTestNGSpringContextTests {
 
     @BeforeTest
     public void setUpBeforeClass() {
-        user = new User("sampleusername", "samplepassword");
+        credentials = new Credentials("sampleusername", "samplepassword");
     }
 
     @Test
     public void loginShouldReturnLoginSuccessWithCredentials() throws Exception {
         mockMvc.perform(post("/login")
-                        .content(String.format("{\"username\": \"%s\", \"password\": \"%s\"}", user.getUsername(), user.getPassword()))
+                        .content(new JSONObject()
+                                .put("username", credentials.getUsername())
+                                .put("password", credentials.getPassword()).toString())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("login sucess with credentials:" + user.getUsername() + " " + user.getPassword())))
+                .andExpect(content().string(containsString(String.format("message\":\"login success with credentials: %s %s", credentials.getUsername(), credentials.getPassword()))))
                 .andReturn();
     }
 }
