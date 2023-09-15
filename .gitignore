@@ -39,3 +39,7 @@ build/
 /estesting-test-framework/api-testing/mvnw.cmd
 /estestingportal/mvnw
 /estestingportal/mvnw.cmd
+/gateway/mvnw
+/gateway/mvnw.cmd
+/gateway/.mvn/
+/estestingportal/.mvn/
