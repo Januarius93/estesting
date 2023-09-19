@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
+
+
 @AllArgsConstructor
-public class Credentials {
+public class Password {
     @Setter
-    String username;
-    @Setter
-    String password;
+    @Getter
+    private String PASSWORD;
 }
