@@ -12,15 +12,14 @@ import java.util.Map;
 
 @org.springframework.web.bind.annotation.ControllerAdvice
 public class ControllerAdvice extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(ConstraintViolationException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<String> handleNoSuchElementFoundException(
-            ConstraintViolationException exception
-    ) {
+  @ExceptionHandler(ConstraintViolationException.class)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  public ResponseEntity<String> handleNoSuchElementFoundException(
+      ConstraintViolationException exception) {
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", exception.getMessage());
-        response.put("error", HttpStatus.BAD_REQUEST);
-        return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
-    }
+    Map<String, Object> response = new HashMap<>();
+    response.put("message", exception.getMessage());
+    response.put("error", HttpStatus.BAD_REQUEST);
+    return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
+  }
 }

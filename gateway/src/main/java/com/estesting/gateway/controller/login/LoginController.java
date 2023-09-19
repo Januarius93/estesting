@@ -1,4 +1,5 @@
 package com.estesting.gateway.controller.login;
+
 import com.estesting.gateway.form.LoginForm;
 import com.estesting.gateway.service.LoginService;
 import jakarta.validation.Valid;
@@ -15,14 +16,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Validated
 public class LoginController {
-    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
-    @Autowired
-    private LoginService loginService;
+  private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+  @Autowired private LoginService loginService;
 
-    @SneakyThrows
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public @ResponseBody ResponseEntity<Object> login(@RequestBody @Valid LoginForm loginForm ) {
-        loginService.login(loginForm);
-        return new ResponseEntity<>("user: "+ loginForm.getLogin() + " login" , HttpStatus.OK);
-    }
+  @SneakyThrows
+  @RequestMapping(value = "/login", method = RequestMethod.POST)
+  public @ResponseBody ResponseEntity<Object> login(
+      @RequestBody @Valid LoginForm loginForm, BindingResult bindingResult) {
+    loginService.login(loginForm);
+    return new ResponseEntity<>("user: " + loginForm.getLogin() + " login", HttpStatus.OK);
+  }
 }

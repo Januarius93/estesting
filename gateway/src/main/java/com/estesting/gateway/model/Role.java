@@ -1,4 +1,3 @@
 package com.estesting.gateway.model;
 
-public class Role {
-}
+public class Role {}

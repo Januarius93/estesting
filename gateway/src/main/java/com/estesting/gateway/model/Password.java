@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-
-
+@Getter
 @AllArgsConstructor
 public class Password {
-    @Setter
-    @Getter
-    private String PASSWORD;
+  @Setter
+  private String PASSWORD;
 }
