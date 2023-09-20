@@ -10,7 +10,8 @@ import org.testng.annotations.BeforeClass;
 
 public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests {
   protected MockMvc mockMvc;
-  protected ObjectMapper objectMapper = new ObjectMapper();
+  protected static final String SIGN_UP_ENDPOINT = "/signup";
+  protected static ObjectMapper objectMapper = new ObjectMapper();
   @Autowired private WebApplicationContext webApplicationContext;
 
   @BeforeClass
