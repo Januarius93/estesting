@@ -30,14 +30,14 @@ public class SignUpControllerTest extends AbstractUnitTest {
     mockMvc
         .perform(
             post(SIGN_UP_ENDPOINT)
-                .content(validSignupForm.getSignUpData())
+                .content(validSignupForm.getFormData())
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(
             content()
                 .string(
                     containsString(
-                        String.format("user: %s signup", validSignupForm.getUsername()))))
+                        String.format("user: %s signup", validSignupForm.getFormData()))))
         .andReturn();
   }
 
@@ -49,7 +49,7 @@ public class SignUpControllerTest extends AbstractUnitTest {
         mockMvc
             .perform(
                 post(SIGN_UP_ENDPOINT)
-                    .content(signUpFormData.getSignUpData())
+                    .content(signUpFormData.getFormData())
                     .contentType(MediaType.APPLICATION_JSON))
             .andReturn();
     assertThatStatusCodeIs400(mvcResult);

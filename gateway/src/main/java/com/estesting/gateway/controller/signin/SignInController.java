@@ -24,6 +24,6 @@ public class SignInController {
   public @ResponseBody ResponseEntity<Object> signIn(
       @RequestBody @Valid SignInForm signInForm, BindingResult bindingResult) {
     signInService.signIn(signInForm);
-    return new ResponseEntity<>("user: " + signInForm.getLogin() + " SignIn", HttpStatus.OK);
+    return new ResponseEntity<>("user: " + signInForm.getFormData() + " SignIn", HttpStatus.OK);
   }
 }

@@ -4,9 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
-import lombok.Getter;
+import org.json.JSONObject;
 
-@Getter
 @Builder
 public class SignInForm implements Form {
   @NotBlank(message = "Email can not be blank")
@@ -18,4 +17,9 @@ public class SignInForm implements Form {
   @NotEmpty(message = "Password can not be empty")
   @NotNull(message = "Password is mandatory")
   private String password;
+
+  @Override
+  public String getFormData() {
+    return new JSONObject().put("login", this.login).put("password", this.password).toString();
+  }
 }
