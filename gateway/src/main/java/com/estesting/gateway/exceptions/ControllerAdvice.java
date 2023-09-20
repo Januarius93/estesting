@@ -1,6 +1,6 @@
 package com.estesting.gateway.exceptions;
 
-import com.estesting.gateway.controller.login.LoginController;
+import com.estesting.gateway.controller.signin.SignInController;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ import java.util.Set;
 @Slf4j
 @org.springframework.web.bind.annotation.ControllerAdvice
 public class ControllerAdvice extends ResponseEntityExceptionHandler {
-  private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+  private static final Logger log = LoggerFactory.getLogger(SignInController.class);
 
   @ExceptionHandler(ConstraintViolationException.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

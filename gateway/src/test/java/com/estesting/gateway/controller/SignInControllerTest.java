@@ -1,6 +1,7 @@
 package com.estesting.gateway.controller;
 
-import com.estesting.gateway.controller.login.LoginController;
+
+import com.estesting.gateway.controller.signin.SignInController;
 import com.estesting.gateway.model.Error;
 import com.estesting.gateway.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,8 +29,8 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 @SpringBootTest
-@Import(LoginController.class)
-public class LoginControllerTest extends AbstractTestNGSpringContextTests {
+@Import(SignInController.class)
+public class SignInControllerTest extends AbstractTestNGSpringContextTests {
 
   @Autowired private WebApplicationContext webApplicationContext;
 
@@ -44,10 +45,10 @@ public class LoginControllerTest extends AbstractTestNGSpringContextTests {
 
 
   @Test(dataProvider = "validUserDataProvider")
-  public void loginShouldReturnLoginSuccessWithUserNameAndHttp200(User user) throws Exception {
+  public void SignInShouldReturnSignInSuccessWithUserNameAndHttp200(User user) throws Exception {
     mockMvc
         .perform(
-            post("/login")
+            post("/signin")
                 .content(
                     new JSONObject()
                         .put("login", user.getUsername())
@@ -56,17 +57,17 @@ public class LoginControllerTest extends AbstractTestNGSpringContextTests {
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(
-            content().string(containsString(String.format("user: %s login", user.getUsername()))))
+            content().string(containsString(String.format("user: %s SignIn", user.getUsername()))))
         .andReturn();
   }
 
   @Test(dataProvider = "invalidUserDataProvider")
-  public void loginShouldReturnLoginErrorAndHttp400(User user, List<String> errorCodes)
+  public void SignInShouldReturnSignInErrorAndHttp400(User user, List<String> errorCodes)
       throws Exception {
     MvcResult result =
         mockMvc
             .perform(
-                post("/login")
+                post("/signin")
                     .content(
                         new JSONObject()
                             .put("login", user.getUsername())

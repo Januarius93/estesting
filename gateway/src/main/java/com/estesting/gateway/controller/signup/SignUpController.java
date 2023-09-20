@@ -1,7 +1,7 @@
 package com.estesting.gateway.controller.signup;
 
 import com.estesting.gateway.form.SignUpForm;
-import com.estesting.gateway.service.LoginService;
+import com.estesting.gateway.service.SignInService;
 import com.estesting.gateway.service.SignUpService;
 import jakarta.validation.Valid;
 import lombok.SneakyThrows;
