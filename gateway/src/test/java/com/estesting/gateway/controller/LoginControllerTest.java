@@ -2,62 +2,130 @@ package com.estesting.gateway.controller;
 
 import com.estesting.gateway.controller.login.LoginController;
 import com.estesting.gateway.model.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hibernate.query.ResultListTransformer;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.List;
 
 @SpringBootTest
 @Import(LoginController.class)
 public class LoginControllerTest extends AbstractTestNGSpringContextTests {
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+  @Autowired private WebApplicationContext webApplicationContext;
 
-    private MockMvc mockMvc;
+  private MockMvc mockMvc;
 
-    @BeforeClass
-    public void setupBeforeClass() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-    }
+  private ObjectMapper objectMapper = new ObjectMapper();
+
+  @BeforeClass
+  public void setupBeforeClass() {
+    this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+  }
+
+  @Test(dataProvider = "validUserDataProvider")
+  public void loginShouldReturnLoginSuccessWithUserNameAndHttp200(User user) throws Exception {
+    mockMvc
+        .perform(
+            post("/login")
+                .content(
+                    new JSONObject()
+                        .put("login", user.getUsername())
+                        .put("password", user.getPassword())
+                        .toString())
+                .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(
+            content().string(containsString(String.format("user: %s login", user.getUsername()))))
+        .andReturn();
+  }
+
+  @Test(dataProvider = "invalidUserDataProvider")
+  public void loginShouldReturnLoginErrorAndHttp400(User user)
+      throws Exception {
+         mockMvc
+            .perform(
+                post("/login")
+                    .content(
+                        new JSONObject()
+                            .put("login", user.getUsername())
+                            .put("password", user.getPassword())
+                            .toString())
+                    .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
 
 
-    @Test(dataProvider = "userDataProvider")
-    public void loginShouldReturnLoginSuccessWithCredentials(User user) throws Exception {
-        mockMvc.perform(post("/login")
-                        .content(new JSONObject()
-                                .put("login", user.getUsername())
-                                .put("password", user.getPassword()).toString())
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString(String.format("user: %s login", user.getUsername()))))
-                .andReturn();
-    }
+//
+//    Assert.assertTrue(
+//        containsInStringFromListOfStrings(response.getResponse().getContentAsString(), errorMsg),
+//        "Error response should match");
+  }
 
-    @DataProvider(name = "userDataProvider")
-    public Object[][] properUserDataProvider() {
-        return new Object[][]{
-                {new User("Ryszard", "wxpr2xz")}
-                , {
-                new User("Mateo", "82ja8uda")
-                }};
-    }
+  private boolean containsInStringFromListOfStrings(
+      String actualErrorMessage, List<String> expectedErrorMessages) {
+    int expectedErrorMessageCounter = expectedErrorMessages.size();
+
+
+    return expectedErrorMessages.stream().allMatch(actualErrorMessage::contains);
+  }
+
+  @DataProvider(name = "invalidUserDataProvider")
+  public Object[][] wrongUserDataProvider() {
+    return new Object[][] {
+      {
+        new User("", "wxpr2xz"),
+//        List.of("Email can not be empty", " Email can not be blank", "BAD_REQUEST")
+      },
+      {
+        new User(null, "awdawd"),
+//        List.of(
+//            "Email can not be empty", "Email can not be blank", "Email is mandatory", "BAD_REQUEST")
+      },
+      {
+        new User(null, null),
+//        List.of("Email can not be empty", " Email can not be blank", "BAD_REQUEST")
+      },
+      /** mystery for now * */
+      //                {new User("Jaugueniush", null)}, mystery for now
+      //                {new User("Mateo","" )},
+
+      //            {
+      //                    new User("", ""),
+      //                    List.of("Email can not be empty", " Email can not be blank",
+      // "BAD_REQUEST")
+      //            },
+    };
+  }
+
+  @DataProvider(name = "validUserDataProvider")
+  public Object[][] properUserDataProvider() {
+    return new Object[][] {
+      {new User("Ryszard", "wxpr2xz")},
+      {new User("Mateo", "82ja8uda")},
+      {new User("Wodzisława", "56jhswery")}
+    };
+  }
+
+  //    "{"message":"login.loginForm.login: Email can not be empty, login.loginForm.login: Email can
+  // not be blank","error":"BAD_REQUEST"}"
 }

@@ -30,6 +30,7 @@ public class User {
 
   @Getter
   @Setter
+  @NotBlank(message = "password can not be empty")
   @NotNull(message = "password can not be null")
   @NotEmpty(message = "password can not be empty")
   private Password password;
