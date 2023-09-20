@@ -1,3 +1,5 @@
 package com.estesting.gateway.form;
 
-public interface Form {}
+public interface Form {
+  String getFormData();
+}

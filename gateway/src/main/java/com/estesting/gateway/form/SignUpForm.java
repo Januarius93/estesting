@@ -6,10 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONObject;
 
-@Getter
+
 @Builder
 public class SignUpForm implements Form {
-  @Setter
+
   @NotBlank(message = "Email can not be blank")
   @NotNull(message = "Email can not be null")
   @NotEmpty(message = "Email can not be empty")
@@ -17,26 +17,24 @@ public class SignUpForm implements Form {
   @Email
   private String email;
 
-  @Setter
   @NotBlank(message = "Username can not be blank")
   @NotNull(message = "Username can not be null")
   @NotEmpty(message = "Username can not be empty")
   private String username;
 
-  @Setter
   @NotBlank(message = "Password can not be blank")
   @NotNull(message = "Password can not be null")
   @NotEmpty(message = "Password can not be empty")
   private String password;
 
-  @Setter
   @NotNull(message = "Age can not be null")
   @Positive(message = "Age can not be negative")
   @Min(value = 18, message = "Age can not be smaller that 18")
   @Max(value = 100, message = "Age can not be greater that 100")
   private Integer age;
 
-  public String getSignUpData() {
+  @Override
+  public String getFormData() {
     return new JSONObject()
         .put("email", this.email)
         .put("username", this.username)
