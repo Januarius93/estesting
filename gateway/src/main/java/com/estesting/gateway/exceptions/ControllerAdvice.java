@@ -24,7 +24,7 @@ public class ControllerAdvice extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(ConstraintViolationException.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-  public ResponseEntity<String> handleNoSuchElementFoundException(
+  public ResponseEntity<String> handleConstraintViolationException(
       ConstraintViolationException exception) {
     Map<String, Object> response = new HashMap<>();
     response.put("error", HttpStatus.BAD_REQUEST);
@@ -32,6 +32,7 @@ public class ControllerAdvice extends ResponseEntityExceptionHandler {
     log.error(exception.getMessage());
     return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
   }
+
 
   private List<String> getConstrainsViolations(ConstraintViolationException exception) {
     return exception.getConstraintViolations().stream()

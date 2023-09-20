@@ -42,6 +42,7 @@ public class LoginControllerTest extends AbstractTestNGSpringContextTests {
     this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
   }
 
+
   @Test(dataProvider = "validUserDataProvider")
   public void loginShouldReturnLoginSuccessWithUserNameAndHttp200(User user) throws Exception {
     mockMvc
@@ -114,7 +115,4 @@ public class LoginControllerTest extends AbstractTestNGSpringContextTests {
       {new User("Wodzisława", "56jhswery")}
     };
   }
-
-  //    "{"message":"login.loginForm.login: Email can not be empty, login.loginForm.login: Email can
-  // not be blank","error":"BAD_REQUEST"}"
 }

@@ -3,14 +3,12 @@ package com.estesting.gateway.form;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 @Builder
-public class LoginForm {
+public class LoginForm implements Form {
   @NotBlank(message = "Email can not be blank")
   @NotEmpty(message = "Email can not be empty")
   @NotNull(message = "Email is mandatory")
