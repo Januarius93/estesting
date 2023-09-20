@@ -11,8 +11,7 @@ import org.testng.annotations.BeforeClass;
 public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests {
   protected MockMvc mockMvc;
   protected ObjectMapper objectMapper = new ObjectMapper();
-  @Autowired
-  private WebApplicationContext webApplicationContext;
+  @Autowired private WebApplicationContext webApplicationContext;
 
   @BeforeClass
   protected void setupBeforeClass() {
