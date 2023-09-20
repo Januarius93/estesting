@@ -29,7 +29,6 @@ public class SignUpController {
       @RequestBody @Valid SignUpForm signUpForm, BindingResult bindingResult) {
     signUpService.signUp(signUpForm);
     log.info("user: " + signUpForm.getSignUpData() + " singup");
-
-    return new ResponseEntity<>("user: " + signUpForm.getSignUpData() + " singup", HttpStatus.OK);
+    return new ResponseEntity<>("user: " + signUpForm.getUsername() + " signup", HttpStatus.OK);
   }
 }

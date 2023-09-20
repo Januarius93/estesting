@@ -18,6 +18,7 @@ import java.util.List;
 import static com.estesting.gateway.SignUpFormTestData.*;
 import static com.estesting.gateway.assertion.UnitTestAssertion.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -28,40 +29,34 @@ public class SignUpControllerTest extends AbstractUnitTest {
 
   @Test
   @SneakyThrows
-  public void withValidUserDataSignupShouldReturnSuccessAndHttp200() {
+  public void withValidSignUpDataSignupShouldReturnSuccessAndHttp200() {
+    SignUpForm validSignupForm = buildValidSignUpForm();
     mockMvc
         .perform(
             post(SIGN_UP_ENDPOINT)
-                .content(buildValidSignUpForm())
+                .content(validSignupForm.getSignUpData())
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
+        .andExpect(
+            content()
+                .string(
+                    containsString(
+                        String.format("user: %s signup", validSignupForm.getUsername()))))
         .andReturn();
   }
 
   @SneakyThrows
-  @Test(dataProvider = "invalidMailSignUpForm", dataProviderClass = UnitTestDataProvider.class)
-  public void withBadEmailSignupShouldReturnErrorsAnd400(
-      String signUpFormData, List<String> errorCodes) {
+  @Test(dataProvider = "invalidDataSignUpForm", dataProviderClass = UnitTestDataProvider.class)
+  public void withInvalidSignupDataShouldReturnErrorsAnd400(
+      SignUpForm signUpFormData, List<String> errorCodes) {
     MvcResult mvcResult =
         mockMvc
             .perform(
                 post(SIGN_UP_ENDPOINT)
-                    .content(signUpFormData)
+                    .content(signUpFormData.getSignUpData())
                     .contentType(MediaType.APPLICATION_JSON))
             .andReturn();
     assertThatStatusCodeIs400(mvcResult);
     assertThatResponseContainsErrorCodes(mvcResult, errorCodes);
   }
-
-  @Test
-  @SneakyThrows
-  public void whenUsernameEmptySignupShouldReturnErrorsAnd400() {}
-
-  @Test
-  @SneakyThrows
-  public void whenPasswordEmptySignupShouldReturnErrorsAnd400() {}
-
-  @Test
-  @SneakyThrows
-  public void whenAgeBrokenSignupShouldReturnErrorsAnd400() {}
 }
