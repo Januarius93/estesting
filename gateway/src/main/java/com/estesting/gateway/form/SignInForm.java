@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class LoginForm implements Form {
+public class SignInForm implements Form {
   @NotBlank(message = "Email can not be blank")
   @NotEmpty(message = "Email can not be empty")
   @NotNull(message = "Email is mandatory")
