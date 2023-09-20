@@ -1,14 +1,12 @@
 package com.estesting.gateway.controller;
 
 import com.estesting.gateway.AbstractUnitTest;
+import com.estesting.gateway.controller.signup.SignUpController;
 import com.estesting.gateway.form.SignUpForm;
-import com.estesting.gateway.model.Password;
 import lombok.SneakyThrows;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -18,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(SignUpController.class)
 public class SignUpControllerTest extends AbstractUnitTest {
   private SignUpForm correctSignUpform;
+  private SignUpForm userWithWrong;
 
   @BeforeTest
   public void setupBeforeTest() {
@@ -32,7 +31,7 @@ public class SignUpControllerTest extends AbstractUnitTest {
 
   @Test
   @SneakyThrows
-  public void signupShouldReturnSignUpSuccessWithValidUserDataAndHttp200() {
+  public void withValidUserDataSignupShouldReturnSuccessAndHttp200() {
     mockMvc
         .perform(
             post("/signup")
@@ -40,5 +39,29 @@ public class SignUpControllerTest extends AbstractUnitTest {
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andReturn();
+  }
+
+  @Test
+  @SneakyThrows
+  public void withBadEmailSignupShouldReturnErrorsAnd400() {
+
+  }
+
+  @Test
+  @SneakyThrows
+  public void whenUsernameEmptySignupShouldReturnErrorsAnd400() {
+
+  }
+
+  @Test
+  @SneakyThrows
+  public void whenPasswordEmptySignupShouldReturnErrorsAnd400() {
+
+  }
+
+  @Test
+  @SneakyThrows
+  public void whenAgeBrokenSignupShouldReturnErrorsAnd400() {
+
   }
 }
