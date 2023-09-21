@@ -26,7 +26,7 @@ public class SignUpController {
     private SignUpService signUpService;
 
     @SneakyThrows
-    @PostMapping(SIGN_UP_ENDPOINT)
+    @PostMapping(value = SIGN_UP_ENDPOINT, consumes = "application/json")
     public @ResponseBody ResponseEntity<Object> signUp(
             @RequestBody @Valid SignUpForm signUpForm, BindingResult bindingResult) {
         signUpService.signUp(signUpForm);
