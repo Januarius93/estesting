@@ -24,6 +24,6 @@ public class UnitTestAssertion extends AbstractUnitTest {
       MvcResult mvcResult, List<String> errorCodes) {
     Error error = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), Error.class);
     assertThat(
-        error.getMessage() + " contains " + errorCodes, error.getMessage().containsAll(errorCodes));
+            errorCodes + " contains " + error.getMessage(), errorCodes.containsAll(error.getMessage()));
   }
 }

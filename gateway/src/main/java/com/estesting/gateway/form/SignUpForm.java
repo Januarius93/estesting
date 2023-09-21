@@ -1,36 +1,38 @@
 package com.estesting.gateway.form;
+import com.estesting.gateway.constant.*;
 
 import jakarta.validation.constraints.*;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+
 import org.json.JSONObject;
+
+import static com.estesting.gateway.constant.ErrorCodes.*;
 
 
 @Builder
 public class SignUpForm implements Form {
 
-  @NotBlank(message = "Email can not be blank")
-  @NotNull(message = "Email can not be null")
-  @NotEmpty(message = "Email can not be empty")
-  @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "This is not email")
+  @NotBlank(message = EMAIL_CAN_NOT_BE_BLANK)
+  @NotNull(message = EMAIL_CAN_NOT_BE_NULL)
+  @NotEmpty(message = EMAIL_CAN_NOT_BE_EMPTY)
+  @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = THIS_IS_NOT_EMAIL)
   @Email
   private String email;
 
-  @NotBlank(message = "Username can not be blank")
-  @NotNull(message = "Username can not be null")
-  @NotEmpty(message = "Username can not be empty")
+  @NotBlank(message = USERNAME_CAN_NOT_BE_BLANK)
+  @NotNull(message = USERNAME_CAN_NOT_BE_NULL)
+  @NotEmpty(message = USERNAME_CAN_NOT_BE_EMPTY)
   private String username;
 
-  @NotBlank(message = "Password can not be blank")
-  @NotNull(message = "Password can not be null")
-  @NotEmpty(message = "Password can not be empty")
+  @NotBlank(message = PASSWORD_CAN_NOT_BE_BLANK)
+  @NotNull(message = PASSWORD_CAN_NOT_BE_NULL)
+  @NotEmpty(message = PASSWORD_CAN_NOT_BE_EMPTY)
   private String password;
 
-  @NotNull(message = "Age can not be null")
-  @Positive(message = "Age can not be negative")
-  @Min(value = 18, message = "Age can not be smaller that 18")
-  @Max(value = 100, message = "Age can not be greater that 100")
+  @NotNull(message = AGE_CAN_NOT_BE_NULL)
+  @Positive(message = AGE_CAN_NOT_BE_NEGATIVE)
+  @Min(value = 18, message = AGE_CAN_NOT_BE_SMALLER_THAN_18)
+  @Max(value = 100, message = AGE_CAN_NOT_BE_GREATER_THAN_100)
   private Integer age;
 
   @Override

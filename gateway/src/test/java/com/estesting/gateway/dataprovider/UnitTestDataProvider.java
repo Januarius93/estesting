@@ -6,40 +6,53 @@ import java.util.List;
 
 import static com.estesting.gateway.SignInFormTestData.*;
 import static com.estesting.gateway.SignUpFormTestData.*;
+import static com.estesting.gateway.constant.ErrorCodes.*;
 
 public class UnitTestDataProvider {
 
   @DataProvider(name = "invalidSignInForm")
   public Object[][] invalidSignInForm() {
     return new Object[][] {
-      {buildEmptyLoginSignInForm(), List.of("Email can not be blank", "Email can not be empty")},
+      {buildEmptyLoginSignInForm(), List.of(EMAIL_CAN_NOT_BE_BLANK, EMAIL_CAN_NOT_BE_EMPTY)},
       {
         buildNullLoginSignInForm(),
-        List.of("Email can not be empty", "Email can not be blank", "Email is mandatory")
+        List.of(EMAIL_CAN_NOT_BE_EMPTY, EMAIL_CAN_NOT_BE_BLANK, EMAIL_IS_MANDATORY)
       },
       {
         buildEmptyPasswordSignInForm(),
-        List.of("Password can not be empty", "Password can not be blank")
+        List.of(PASSWORD_CAN_NOT_BE_EMPTY, PASSWORD_CAN_NOT_BE_BLANK)
       },
       {
         buildNullPasswordSignInForm(),
-        List.of("Password is mandatory", "Password can not be empty", "Password can not be blank")
+        List.of(PASSWORD_IS_MANDATORY, PASSWORD_CAN_NOT_BE_EMPTY, PASSWORD_CAN_NOT_BE_BLANK)
       },
       {
         buildAllEmptyFieldsSignInForm(),
         List.of(
-            "Email can not be empty",
-            "Email can not be blank",
-            "Password can not be empty",
-            "Password can not be blank")
+            EMAIL_CAN_NOT_BE_EMPTY,
+            EMAIL_CAN_NOT_BE_BLANK,
+            PASSWORD_CAN_NOT_BE_EMPTY,
+            PASSWORD_CAN_NOT_BE_BLANK)
       },
       {
         buildAllNullFieldsSignInForm(),
-        List.of("Email can not be empty", "Email can not be blank", "Email is mandatory")
+        List.of(
+            EMAIL_CAN_NOT_BE_BLANK,
+            PASSWORD_IS_MANDATORY,
+            PASSWORD_CAN_NOT_BE_BLANK,
+            EMAIL_IS_MANDATORY,
+            PASSWORD_CAN_NOT_BE_EMPTY,
+            EMAIL_CAN_NOT_BE_EMPTY)
       },
       {
         buildNoDataFieldsSignInForm(),
-        List.of("Email can not be empty", "Email can not be blank", "Email is mandatory")
+        List.of(
+            PASSWORD_IS_MANDATORY,
+            EMAIL_CAN_NOT_BE_EMPTY,
+            EMAIL_IS_MANDATORY,
+            PASSWORD_CAN_NOT_BE_EMPTY,
+            EMAIL_CAN_NOT_BE_BLANK,
+            PASSWORD_CAN_NOT_BE_BLANK)
       },
     };
   }
