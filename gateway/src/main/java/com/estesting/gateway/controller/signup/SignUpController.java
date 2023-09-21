@@ -1,4 +1,5 @@
 package com.estesting.gateway.controller.signup;
+import static com.estesting.dependencies.commons.Endpoint.SIGN_UP_ENDPOINT;
 
 import com.estesting.gateway.form.SignUpForm;
 import com.estesting.gateway.service.SignUpService;
@@ -24,7 +25,7 @@ public class SignUpController {
     private SignUpService signUpService;
 
     @SneakyThrows
-    @PostMapping("/signup")
+    @PostMapping(SIGN_UP_ENDPOINT)
     public @ResponseBody ResponseEntity<Object> signUp(
             @RequestBody @Valid SignUpForm signUpForm, BindingResult bindingResult) {
         signUpService.signUp(signUpForm);

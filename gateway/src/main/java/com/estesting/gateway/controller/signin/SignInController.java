@@ -1,4 +1,5 @@
 package com.estesting.gateway.controller.signin;
+import static com.estesting.dependencies.commons.Endpoint.SIGN_IN_ENDPOINT;
 
 import com.estesting.gateway.form.SignInForm;
 import com.estesting.gateway.service.SignInService;
@@ -21,7 +22,7 @@ public class SignInController {
     private SignInService signInService;
 
     @SneakyThrows
-    @RequestMapping(value = "/signin", method = RequestMethod.POST)
+    @RequestMapping(value = SIGN_IN_ENDPOINT, method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Object> signIn(
             @RequestBody @Valid SignInForm signInForm, BindingResult bindingResult) {
         signInService.signIn(signInForm);
