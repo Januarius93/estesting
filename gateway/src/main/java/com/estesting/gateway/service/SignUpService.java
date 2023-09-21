@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class SignUpService {
     private Authentication authentication = new Authentication();
 
-    public void signUp(SignUpForm signUpForm){
+    public void signUp(SignUpForm signUpForm) {
         authentication.authenticateUser(signUpForm);
     }
 }

@@ -12,18 +12,18 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class UnitTestAssertion extends AbstractUnitTest {
-  public static void assertThatStatusCodeIs400(MvcResult mvcResult) {
-    assertThat(
-        mvcResult.getResponse().getStatus() + " should be " + HttpStatus.BAD_REQUEST.value(),
-        mvcResult.getResponse().getStatus(),
-        equalTo(HttpStatus.BAD_REQUEST.value()));
-  }
+    public static void assertThatStatusCodeIs400(MvcResult mvcResult) {
+        assertThat(
+                mvcResult.getResponse().getStatus() + " should be " + HttpStatus.BAD_REQUEST.value(),
+                mvcResult.getResponse().getStatus(),
+                equalTo(HttpStatus.BAD_REQUEST.value()));
+    }
 
-  @SneakyThrows
-  public static void assertThatResponseContainsErrorCodes(
-      MvcResult mvcResult, List<String> errorCodes) {
-    Error error = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), Error.class);
-    assertThat(
-            errorCodes + " contains " + error.getMessage(), errorCodes.containsAll(error.getMessage()));
-  }
+    @SneakyThrows
+    public static void assertThatResponseContainsErrorCodes(
+            MvcResult mvcResult, List<String> errorCodes) {
+        Error error = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), Error.class);
+        assertThat(
+                errorCodes + "all contains in" + error.getMessage(), errorCodes.containsAll(error.getMessage()));
+    }
 }

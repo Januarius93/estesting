@@ -10,15 +10,16 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.annotations.BeforeClass;
 
 public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests {
-  protected MockMvc mockMvc;
-  protected MvcResult mvcResult;
-  protected static final String SIGN_UP_ENDPOINT = "/signup";
-  protected static final String SIGN_IN_ENDPOINT = "/signin";
-  protected static ObjectMapper objectMapper = new ObjectMapper();
-  @Autowired private WebApplicationContext webApplicationContext;
+    protected static final String SIGN_UP_ENDPOINT = "/signup";
+    protected static final String SIGN_IN_ENDPOINT = "/signin";
+    protected static ObjectMapper objectMapper = new ObjectMapper();
+    protected MockMvc mockMvc;
+    protected MvcResult mvcResult;
+    @Autowired
+    private WebApplicationContext webApplicationContext;
 
-  @BeforeClass
-  protected void setupBeforeClass() {
-    this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-  }
+    @BeforeClass
+    protected void setupBeforeClass() {
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+    }
 }
