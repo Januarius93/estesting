@@ -1,6 +1,4 @@
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import model.Credentials;
 import model.User;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,16 +12,16 @@ public class SignInTest {
 
     @Test
     public void validateIfUserWithUserNameAndPasswordCanSignInWithHTTP200() throws JSONException {
-    given()
-        .contentType(ContentType.JSON)
-        .body(new JSONObject().put("login","awdawd").put("password", "").toString())
-        .baseUri("http://localhost")
-        .port(8181)
-        .when()
-        .post("/signin")
-        .then()
+        given()
+                .contentType(ContentType.JSON)
+                .body(new JSONObject().put("login", "awdawd").put("password", "").toString())
+                .baseUri("http://localhost")
+                .port(8181)
+                .when()
+                .post("/signin")
+                .then()
 //        .statusCode(200)
-        .body(
-            containsString("awdawd"));
+                .body(
+                        containsString("awdawd"));
     }
 }

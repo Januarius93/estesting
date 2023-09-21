@@ -10,10 +10,10 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 public class Password {
-  @Setter
-  @NotBlank(message = "Password can not be blank")
-  @NotEmpty(message = "Password can not be empty")
-  @NotNull(message = "Password is mandatory")
-  private String PASSWORD;
+    @Setter
+    @NotBlank(message = "Password can not be blank")
+    @NotEmpty(message = "Password can not be empty")
+    @NotNull(message = "Password is mandatory")
+    private String PASSWORD;
 
 }

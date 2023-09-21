@@ -16,14 +16,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Validated
 public class SignInController {
-  private static final Logger log = LoggerFactory.getLogger(SignInController.class);
-  @Autowired private SignInService signInService;
+    private static final Logger log = LoggerFactory.getLogger(SignInController.class);
+    @Autowired
+    private SignInService signInService;
 
-  @SneakyThrows
-  @RequestMapping(value = "/signin", method = RequestMethod.POST)
-  public @ResponseBody ResponseEntity<Object> signIn(
-      @RequestBody @Valid SignInForm signInForm, BindingResult bindingResult) {
-    signInService.signIn(signInForm);
-    return new ResponseEntity<>("user: " + signInForm.getFormData() + " SignIn", HttpStatus.OK);
-  }
+    @SneakyThrows
+    @RequestMapping(value = "/signin", method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity<Object> signIn(
+            @RequestBody @Valid SignInForm signInForm, BindingResult bindingResult) {
+        signInService.signIn(signInForm);
+        return new ResponseEntity<>("user: " + signInForm.getFormData() + " SignIn", HttpStatus.OK);
+    }
 }

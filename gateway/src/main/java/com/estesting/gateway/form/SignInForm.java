@@ -6,20 +6,22 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import org.json.JSONObject;
 
+import static com.estesting.dependencies.commons.ErrorCodes.*;
+
 @Builder
 public class SignInForm implements Form {
-  @NotBlank(message = "Email can not be blank")
-  @NotEmpty(message = "Email can not be empty")
-  @NotNull(message = "Email is mandatory")
-  private String login;
+    @NotBlank(message = EMAIL_CAN_NOT_BE_BLANK)
+    @NotEmpty(message = EMAIL_CAN_NOT_BE_EMPTY)
+    @NotNull(message = EMAIL_IS_MANDATORY)
+    private String login;
 
-  @NotBlank(message = "Password can not be blank")
-  @NotEmpty(message = "Password can not be empty")
-  @NotNull(message = "Password is mandatory")
-  private String password;
+    @NotBlank(message = PASSWORD_CAN_NOT_BE_BLANK)
+    @NotEmpty(message = PASSWORD_CAN_NOT_BE_EMPTY)
+    @NotNull(message = PASSWORD_IS_MANDATORY)
+    private String password;
 
-  @Override
-  public String getFormData() {
-    return new JSONObject().put("login", this.login).put("password", this.password).toString();
-  }
+    @Override
+    public String getFormData() {
+        return new JSONObject().put("login", this.login).put("password", this.password).toString();
+    }
 }
