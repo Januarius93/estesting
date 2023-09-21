@@ -11,7 +11,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import static com.estesting.dependencies.commons.Endpoint.SIGN_IN_ENDPOINT;
 
 @RestController
 @Validated
@@ -21,7 +26,7 @@ public class SignInController {
     private SignInService signInService;
 
     @SneakyThrows
-    @RequestMapping(value = "/signin", method = RequestMethod.POST)
+    @PostMapping(value = SIGN_IN_ENDPOINT, consumes = "application/json")
     public @ResponseBody ResponseEntity<Object> signIn(
             @RequestBody @Valid SignInForm signInForm, BindingResult bindingResult) {
         signInService.signIn(signInForm);

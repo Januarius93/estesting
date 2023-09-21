@@ -5,6 +5,7 @@ import lombok.Builder;
 import org.json.JSONObject;
 
 import static com.estesting.dependencies.commons.ErrorCodes.*;
+import static com.estesting.dependencies.commons.FormRequestAttributes.*;
 
 
 @Builder
@@ -36,10 +37,10 @@ public class SignUpForm implements Form {
     @Override
     public String getFormData() {
         return new JSONObject()
-                .put("email", this.email)
-                .put("username", this.username)
-                .put("password", this.password)
-                .put("age", this.age)
+                .put(EMAIL, this.email)
+                .put(USERNAME, this.username)
+                .put(PASSWORD, this.password)
+                .put(AGE, this.age)
                 .toString();
     }
 }

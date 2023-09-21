@@ -11,6 +11,9 @@ public class ErrorCodes {
     public static final String USERNAME_CAN_NOT_BE_BLANK = "Username can not be blank";
     public static final String USERNAME_CAN_NOT_BE_NULL = "Username can not be null";
     public static final String USERNAME_CAN_NOT_BE_EMPTY = "Username can not be empty";
+    public static final String LOGIN_CAN_NOT_BE_BLANK = "Login can not be blank";
+    public static final String LOGIN_CAN_NOT_BE_EMPTY = "Login can not be empty";
+    public static final String LOGIN_IS_MANDATORY = "Login is mandatory";
     public static final String PASSWORD_CAN_NOT_BE_BLANK = "Password can not be blank";
     public static final String PASSWORD_CAN_NOT_BE_NULL = "Password can not be null";
     public static final String PASSWORD_CAN_NOT_BE_EMPTY = "Password can not be empty";

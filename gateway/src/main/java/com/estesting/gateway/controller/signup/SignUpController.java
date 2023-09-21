@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.estesting.dependencies.commons.Endpoint.SIGN_UP_ENDPOINT;
+
 @RestController
 @Validated
 public class SignUpController {
@@ -24,7 +26,7 @@ public class SignUpController {
     private SignUpService signUpService;
 
     @SneakyThrows
-    @PostMapping("/signup")
+    @PostMapping(value = SIGN_UP_ENDPOINT, consumes = "application/json")
     public @ResponseBody ResponseEntity<Object> signUp(
             @RequestBody @Valid SignUpForm signUpForm, BindingResult bindingResult) {
         signUpService.signUp(signUpForm);

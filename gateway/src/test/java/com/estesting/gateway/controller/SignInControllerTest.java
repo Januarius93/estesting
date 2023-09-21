@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static com.estesting.dependencies.commons.Endpoint.SIGN_IN_ENDPOINT;
 import static com.estesting.gateway.SignInFormTestData.buildValidSignInForm;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatResponseContainsErrorCodes;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatStatusCodeIs400;
