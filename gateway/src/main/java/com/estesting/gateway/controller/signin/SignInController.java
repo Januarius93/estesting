@@ -1,5 +1,4 @@
 package com.estesting.gateway.controller.signin;
-import static com.estesting.dependencies.commons.Endpoint.SIGN_IN_ENDPOINT;
 
 import com.estesting.gateway.form.SignInForm;
 import com.estesting.gateway.service.SignInService;
@@ -13,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import static com.estesting.dependencies.commons.Endpoint.SIGN_IN_ENDPOINT;
 
 @RestController
 @Validated

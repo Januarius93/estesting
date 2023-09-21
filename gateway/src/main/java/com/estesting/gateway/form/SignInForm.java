@@ -7,12 +7,14 @@ import lombok.Builder;
 import org.json.JSONObject;
 
 import static com.estesting.dependencies.commons.ErrorCodes.*;
+import static com.estesting.dependencies.commons.FormRequestAttributes.LOGIN;
+import static com.estesting.dependencies.commons.FormRequestAttributes.PASSWORD;
 
 @Builder
 public class SignInForm implements Form {
-    @NotBlank(message = EMAIL_CAN_NOT_BE_BLANK)
-    @NotEmpty(message = EMAIL_CAN_NOT_BE_EMPTY)
-    @NotNull(message = EMAIL_IS_MANDATORY)
+    @NotBlank(message = LOGIN_CAN_NOT_BE_BLANK)
+    @NotEmpty(message = LOGIN_CAN_NOT_BE_EMPTY)
+    @NotNull(message = LOGIN_IS_MANDATORY)
     private String login;
 
     @NotBlank(message = PASSWORD_CAN_NOT_BE_BLANK)
@@ -22,6 +24,6 @@ public class SignInForm implements Form {
 
     @Override
     public String getFormData() {
-        return new JSONObject().put("login", this.login).put("password", this.password).toString();
+        return new JSONObject().put(LOGIN, this.login).put(PASSWORD, this.password).toString();
     }
 }

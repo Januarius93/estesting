@@ -13,10 +13,10 @@ public class UnitTestDataProvider {
     @DataProvider(name = "invalidSignInForm")
     public Object[][] invalidSignInForm() {
         return new Object[][]{
-                {buildEmptyLoginSignInForm(), List.of(EMAIL_CAN_NOT_BE_BLANK, EMAIL_CAN_NOT_BE_EMPTY)},
+                {buildEmptyLoginSignInForm(), List.of(LOGIN_CAN_NOT_BE_BLANK, LOGIN_CAN_NOT_BE_EMPTY)},
                 {
                         buildNullLoginSignInForm(),
-                        List.of(EMAIL_CAN_NOT_BE_EMPTY, EMAIL_CAN_NOT_BE_BLANK, EMAIL_IS_MANDATORY)
+                        List.of(LOGIN_CAN_NOT_BE_EMPTY, LOGIN_CAN_NOT_BE_BLANK, LOGIN_IS_MANDATORY)
                 },
                 {
                         buildEmptyPasswordSignInForm(),
@@ -29,29 +29,29 @@ public class UnitTestDataProvider {
                 {
                         buildAllEmptyFieldsSignInForm(),
                         List.of(
-                                EMAIL_CAN_NOT_BE_EMPTY,
-                                EMAIL_CAN_NOT_BE_BLANK,
+                                LOGIN_CAN_NOT_BE_EMPTY,
+                                LOGIN_CAN_NOT_BE_BLANK,
                                 PASSWORD_CAN_NOT_BE_EMPTY,
                                 PASSWORD_CAN_NOT_BE_BLANK)
                 },
                 {
                         buildAllNullFieldsSignInForm(),
                         List.of(
-                                EMAIL_CAN_NOT_BE_BLANK,
+                                LOGIN_CAN_NOT_BE_BLANK,
                                 PASSWORD_IS_MANDATORY,
                                 PASSWORD_CAN_NOT_BE_BLANK,
-                                EMAIL_IS_MANDATORY,
+                                LOGIN_IS_MANDATORY,
                                 PASSWORD_CAN_NOT_BE_EMPTY,
-                                EMAIL_CAN_NOT_BE_EMPTY)
+                                LOGIN_CAN_NOT_BE_EMPTY)
                 },
                 {
                         buildNoDataFieldsSignInForm(),
                         List.of(
                                 PASSWORD_IS_MANDATORY,
-                                EMAIL_CAN_NOT_BE_EMPTY,
-                                EMAIL_IS_MANDATORY,
+                                LOGIN_CAN_NOT_BE_EMPTY,
+                                LOGIN_IS_MANDATORY,
                                 PASSWORD_CAN_NOT_BE_EMPTY,
-                                EMAIL_CAN_NOT_BE_BLANK,
+                                LOGIN_CAN_NOT_BE_BLANK,
                                 PASSWORD_CAN_NOT_BE_BLANK)
                 },
         };
