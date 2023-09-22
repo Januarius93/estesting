@@ -119,4 +119,15 @@ public class UnitTestDataProvider {
                 },
         };
     }
+
+    @DataProvider(name = "invalidDataPasswordResetForm")
+    public Object[][] invalidDataPasswordResetForm() {
+        return new Object[][]{
+                {"", List.of(EMAIL_CAN_NOT_BE_EMPTY, THIS_IS_NOT_EMAIL, EMAIL_CAN_NOT_BE_BLANK)},
+                {"a", List.of(EMAIL_MUST_BE_WELL_FORMATED, THIS_IS_NOT_EMAIL)},
+                {"a@", List.of(EMAIL_MUST_BE_WELL_FORMATED, THIS_IS_NOT_EMAIL)},
+                {"a@a", List.of(THIS_IS_NOT_EMAIL)},
+                {"a.com", List.of(THIS_IS_NOT_EMAIL, EMAIL_MUST_BE_WELL_FORMATED)},
+        };
+    }
 }
