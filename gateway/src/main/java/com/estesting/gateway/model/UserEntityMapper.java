@@ -11,6 +11,7 @@ import lombok.SneakyThrows;
 public class UserEntityMapper {
     @Setter
     private Form userForm;
+
     public UserEntityMapper(SignUpForm signUpForm) {
         this.userForm = signUpForm;
     }

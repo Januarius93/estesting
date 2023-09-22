@@ -1,39 +1,41 @@
 package com.estesting.gateway.repository;
 
-import com.estesting.gateway.GatewayApplication;
+import com.estesting.gateway.AbstractUnitTest;
+import com.estesting.gateway.form.SignUpForm;
 import com.estesting.gateway.model.User;
-import org.junit.runner.RunWith;
+import com.estesting.gateway.model.UserEntityMapper;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.testng.annotations.BeforeTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.testng.annotations.Test;
 
-
+import static com.estesting.gateway.SignUpFormTestData.buildValidSignUpForm;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
-@Configuration
-@EnableJpaRepositories(basePackages = "com.estesting.gateway.repository")
-@DataJpaTest
-public class UserRepositoryTest {
-
+@SpringBootTest
+public class UserRepositoryTest extends AbstractUnitTest {
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepository = Mockito.mock(UserRepository.class);
 
-//    @BeforeTest
-//    public void setUpBeforeTest() {
-//        userRepository.saveAll(List.of(
-//                new User(), new User(), new User(), new User(), new User()
-//        ));
+//    @BeforeClass
+//    public void beforeMethod() {
+//        userRepository = Mockito.mock(UserRepository.class);
 //    }
 
     @Test
-    public void saveEntityTest() {
-        User user = new User();
-        user.setEmail("blaba@blabal.com");
-        userRepository.save(user);
-        assertThat(userRepository.findById(user.getId()).get().getEmail(),equalTo("blaba@blabal.com"));
+    public void withValidSignUpFormUserShouldBeCreatedInRepository() {
+        SignUpForm validSignUpForm = buildValidSignUpForm();
+        User user = new UserEntityMapper(validSignUpForm).generateUser();
+        User repositoryUser = userRepository.save(user);
+        assertThat("User should be created in repository", repositoryUser.getId(), is(notNullValue()));
     }
+
+//    @Test
+//    public void withInvalidSignUpFormUserShouldNotBeCreatedInRepositoryWithErrors() {
+//        User user = new UserEntityMapper(SignUpForm.builder().age(18).username("awd").password("awd").email("").build()).generateUser();
+//        User repositoryUser = userRepository.save(user);
+//        assertThat("User should be created in repository", repositoryUser.getId(), is(notNullValue()));
+//    }
 }

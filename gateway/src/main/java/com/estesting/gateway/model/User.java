@@ -1,7 +1,10 @@
 package com.estesting.gateway.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
+
+import static com.estesting.dependencies.commons.Regex.EMAIL_REGEX;
 
 @Setter
 @Getter
@@ -15,6 +18,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Pattern(regexp = EMAIL_REGEX)
     @Column(name = "EMAIL", length = 50, nullable = false, unique = true)
     private String email;
 
