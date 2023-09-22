@@ -62,7 +62,7 @@ public class UnitTestDataProvider {
         return new Object[][]{
                 {
                         buildInvalidEmailFormatSignUpForm(),
-                        List.of(THIS_IS_NOT_EMAIL, MUST_BE_A_WELL_FORMED_EMAIL_ADDRESS)
+                        List.of(THIS_IS_NOT_EMAIL, EMAIL_MUST_BE_WELL_FORMATED)
                 },
                 {
                         buildEmptyEmailSignUpForm(),
@@ -117,6 +117,17 @@ public class UnitTestDataProvider {
                                 USERNAME_CAN_NOT_BE_BLANK,
                                 PASSWORD_CAN_NOT_BE_NULL)
                 },
+        };
+    }
+
+    @DataProvider(name = "invalidDataPasswordResetForm")
+    public Object[][] invalidDataPasswordResetForm() {
+        return new Object[][]{
+                {"", List.of(EMAIL_CAN_NOT_BE_EMPTY, THIS_IS_NOT_EMAIL, EMAIL_CAN_NOT_BE_BLANK)},
+                {"a", List.of(EMAIL_MUST_BE_WELL_FORMATED, THIS_IS_NOT_EMAIL)},
+                {"a@", List.of(EMAIL_MUST_BE_WELL_FORMATED, THIS_IS_NOT_EMAIL)},
+                {"a@a", List.of(THIS_IS_NOT_EMAIL)},
+                {"a.com", List.of(THIS_IS_NOT_EMAIL, EMAIL_MUST_BE_WELL_FORMATED)},
         };
     }
 }

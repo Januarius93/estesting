@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import static com.estesting.dependencies.commons.ErrorCodes.*;
 import static com.estesting.dependencies.commons.FormRequestAttributes.*;
+import static com.estesting.dependencies.commons.Regex.EMAIL_REGEX;
 
 
 @Builder
@@ -14,8 +15,8 @@ public class SignUpForm implements Form {
     @NotBlank(message = EMAIL_CAN_NOT_BE_BLANK)
     @NotNull(message = EMAIL_CAN_NOT_BE_NULL)
     @NotEmpty(message = EMAIL_CAN_NOT_BE_EMPTY)
-    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = THIS_IS_NOT_EMAIL)
-    @Email
+    @Pattern(regexp = EMAIL_REGEX, message = THIS_IS_NOT_EMAIL)
+    @Email(message = EMAIL_MUST_BE_WELL_FORMATED)
     private String email;
 
     @NotBlank(message = USERNAME_CAN_NOT_BE_BLANK)

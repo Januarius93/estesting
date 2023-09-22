@@ -24,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @Import(SignInController.class)
 public class SignInControllerTest extends AbstractUnitTest {
+
     @Test
     public void withValidSignInDataSignInShouldReturnSuccessWithHttp200() throws Exception {
         SignInForm validSignInForm = buildValidSignInForm();

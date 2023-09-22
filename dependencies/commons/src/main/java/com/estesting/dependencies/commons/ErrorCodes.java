@@ -6,7 +6,7 @@ public class ErrorCodes {
     public static final String EMAIL_CAN_NOT_BE_NULL = "Email can not be null";
     public static final String EMAIL_CAN_NOT_BE_EMPTY = "Email can not be empty";
     public static final String EMAIL_IS_MANDATORY = "Email is mandatory";
-    public static final String MUST_BE_A_WELL_FORMED_EMAIL_ADDRESS = "must be a well-formed email address";
+    public static final String EMAIL_MUST_BE_WELL_FORMATED = "Email must have proper format";
     public static final String THIS_IS_NOT_EMAIL = "This is not email";
     public static final String USERNAME_CAN_NOT_BE_BLANK = "Username can not be blank";
     public static final String USERNAME_CAN_NOT_BE_NULL = "Username can not be null";
