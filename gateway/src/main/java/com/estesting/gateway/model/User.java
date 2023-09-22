@@ -22,7 +22,7 @@ public class User {
     private String username;
 
     @Column(name = "PASSWORD", length = 50, nullable = false, unique = true)
-    private Password password;
+    private String password;
 
     @Column(name = "AGE", length = 50, nullable = false, unique = true)
     private Integer age;
@@ -32,6 +32,6 @@ public class User {
 
     public User(String login, String password) {
         this.username = login;
-        this.password = new Password(password);
+        this.password = password;
     }
 }

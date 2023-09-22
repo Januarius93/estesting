@@ -2,6 +2,7 @@ package com.estesting.gateway.controller.signup;
 
 import com.estesting.gateway.form.SignUpForm;
 import com.estesting.gateway.service.SignUpService;
+import com.estesting.gateway.service.SignUpServiceImpl;
 import jakarta.validation.Valid;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
@@ -23,13 +24,13 @@ import static com.estesting.dependencies.commons.Endpoint.SIGN_UP_ENDPOINT;
 public class SignUpController {
     private static final Logger log = LoggerFactory.getLogger(SignUpController.class);
     @Autowired
-    private SignUpService signUpService;
+    private SignUpServiceImpl signUpService;
 
     @SneakyThrows
     @PostMapping(value = SIGN_UP_ENDPOINT, consumes = "application/json")
     public @ResponseBody ResponseEntity<Object> signUp(
             @RequestBody @Valid SignUpForm signUpForm, BindingResult bindingResult) {
-        signUpService.signUp(signUpForm);
+        signUpService.createUser(signUpForm);
         log.info("user: " + signUpForm.getFormData() + " singup");
         return new ResponseEntity<>("user: " + signUpForm.getFormData() + " signup", HttpStatus.OK);
     }
