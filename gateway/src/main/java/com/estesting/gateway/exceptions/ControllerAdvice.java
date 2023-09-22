@@ -32,6 +32,16 @@ public class ControllerAdvice extends ResponseEntityExceptionHandler {
         return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<String> handle(
+            ConstraintViolationException exception) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("error", HttpStatus.BAD_REQUEST);
+        response.put("message", exception.getMessage());
+        log.error(exception.getMessage());
+        return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
+    }
+
 
     private List<String> getConstrainsViolations(ConstraintViolationException exception) {
         return exception.getConstraintViolations().stream()

@@ -62,7 +62,7 @@ public class UnitTestDataProvider {
         return new Object[][]{
                 {
                         buildInvalidEmailFormatSignUpForm(),
-                        List.of(THIS_IS_NOT_EMAIL, MUST_BE_A_WELL_FORMED_EMAIL_ADDRESS)
+                        List.of(THIS_IS_NOT_EMAIL, EMAIL_MUST_BE_WELL_FORMATED)
                 },
                 {
                         buildEmptyEmailSignUpForm(),

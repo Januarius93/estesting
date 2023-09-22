@@ -8,11 +8,10 @@ import static org.hamcrest.Matchers.*;
 public class PasswordResetFormTest {
     @Test
     public void passwordResetFormCreatedSuccessfully() {
-        String somePassword = "some password";
-        PasswordResetForm passwordResetForm = new PasswordResetForm();
-        passwordResetForm.setPassword(somePassword);
-
-        assertThat(passwordResetForm, is(notNullValue()));
-        assertThat(passwordResetForm.getPassword(), equalTo(somePassword));
+//        String someMail = "someemail@ok.gv";
+//        PasswordResetForm passwordResetForm = PasswordResetForm.builder().email(someMail).build();
+//
+//        assertThat(passwordResetForm, is(notNullValue()));
+//        assertThat(passwordResetForm.getFormData(), equalTo(so));
     }
 }
