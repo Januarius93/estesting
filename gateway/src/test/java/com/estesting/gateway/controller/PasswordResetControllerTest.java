@@ -18,13 +18,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class PasswordResetControllerTest extends AbstractUnitTest {
     @Test
     public void withValidEmailPasswordResetShouldReturnSuccessWithHttp200() throws Exception {
-//        String someValidPassword = "somepwd";
-//        PasswordResetForm passwordResetForm = new PasswordResetForm(someValidPassword);
-//        mockMvc.perform(post(PASSWORD_RESET_ENDPOINT)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(passwordResetForm.getFormData()))
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(containsString(passwordResetForm.getFormData() + "reset")))
-//                .andReturn();
+        PasswordResetForm passwordResetForm = new PasswordResetForm();
+        passwordResetForm.setEmail("some@mail.com");
+        mockMvc.perform(post(PASSWORD_RESET_ENDPOINT)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(passwordResetForm.getFormData()))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(passwordResetForm.getFormData() + " user:  RESET")))
+                .andReturn();
     }
 }

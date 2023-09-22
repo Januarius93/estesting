@@ -30,7 +30,7 @@ public class PasswordResetController {
             @RequestBody @Valid @JsonFormat PasswordResetForm passwordResetForm, BindingResult bindingResult) {
         passwordResetService.resetPassword(passwordResetForm);
         log.info("user: RESET");
-        return new ResponseEntity<>(passwordResetForm.getFormData() + "user:  RESET", HttpStatus.OK);
+        return new ResponseEntity<>(passwordResetForm.getFormData() + " user:  RESET", HttpStatus.OK);
     }
 }
 
