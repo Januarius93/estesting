@@ -1,4 +1,5 @@
 package com.estesting.gateway.model;
 
-public class Role {
+public enum Role {
+    USER,ADMIN
 }
