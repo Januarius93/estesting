@@ -1,4 +1,3 @@
 package test;
 
-public abstract class AbstractTest {
-}
+public abstract class AbstractTest {}

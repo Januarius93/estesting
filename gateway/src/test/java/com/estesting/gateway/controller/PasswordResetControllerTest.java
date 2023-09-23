@@ -22,31 +22,37 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @Import(PasswordResetController.class)
 public class PasswordResetControllerTest extends AbstractUnitTest {
-    @Test
-    public void withValidEmailPasswordResetShouldReturnSuccessWithHttp200() throws Exception {
-        PasswordResetForm passwordResetForm = new PasswordResetForm();
-        passwordResetForm.setEmail("some@mail.com");
-        mockMvc.perform(post(PASSWORD_RESET_ENDPOINT)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(passwordResetForm.getFormData()))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString(passwordResetForm.getFormData() + " user:  RESET")))
-                .andReturn();
-    }
+  @Test
+  public void withValidEmailPasswordResetShouldReturnSuccessWithHttp200() throws Exception {
+    PasswordResetForm passwordResetForm = new PasswordResetForm();
+    passwordResetForm.setEmail("some@mail.com");
+    mockMvc
+        .perform(
+            post(PASSWORD_RESET_ENDPOINT)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(passwordResetForm.getFormData()))
+        .andExpect(status().isOk())
+        .andExpect(
+            content().string(containsString(passwordResetForm.getFormData() + " user:  RESET")))
+        .andReturn();
+  }
 
-    @SneakyThrows
-    @Test(dataProvider = "invalidDataPasswordResetForm", dataProviderClass = UnitTestDataProvider.class)
-    public void withInvalidEmailPasswordResetShouldReturnErrorsWithHttp400(String email, List<String> errorCodes) {
-        PasswordResetForm passwordResetForm = new PasswordResetForm();
-        passwordResetForm.setEmail(email);
-        mvcResult =
-                mockMvc
-                        .perform(
-                                post(PASSWORD_RESET_ENDPOINT)
-                                        .content(passwordResetForm.getFormData())
-                                        .contentType(MediaType.APPLICATION_JSON))
-                        .andReturn();
-        assertThatStatusCodeIs400(mvcResult);
-        assertThatResponseContainsErrorCodes(mvcResult, errorCodes);
-    }
+  @SneakyThrows
+  @Test(
+      dataProvider = "invalidDataPasswordResetForm",
+      dataProviderClass = UnitTestDataProvider.class)
+  public void withInvalidEmailPasswordResetShouldReturnErrorsWithHttp400(
+      String email, List<String> errorCodes) {
+    PasswordResetForm passwordResetForm = new PasswordResetForm();
+    passwordResetForm.setEmail(email);
+    mvcResult =
+        mockMvc
+            .perform(
+                post(PASSWORD_RESET_ENDPOINT)
+                    .content(passwordResetForm.getFormData())
+                    .contentType(MediaType.APPLICATION_JSON))
+            .andReturn();
+    assertThatStatusCodeIs400(mvcResult);
+    assertThatResponseContainsErrorCodes(mvcResult, errorCodes);
+  }
 }

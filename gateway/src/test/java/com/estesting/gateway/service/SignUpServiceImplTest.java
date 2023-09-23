@@ -10,25 +10,20 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class SignUpServiceImplTest extends AbstractUnitTest {
-    private SignUpForm signUpForm;
+  private SignUpForm signUpForm;
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
-    @Autowired
-    private SignUpServiceImpl signUpService;
+  @Autowired private WebApplicationContext webApplicationContext;
+  @Autowired private SignUpServiceImpl signUpService;
 
-    @Autowired
-    private UserRepository userRepository;
+  @Autowired private UserRepository userRepository;
 
-    @BeforeClass
-    public void setUpBeforeTest() {
+  @BeforeClass
+  public void setUpBeforeTest() {}
 
-    }
-
-    @Test
-    public void withValidSignUpFormSignUpServiceCreateUser() {
-        signUpForm = SignUpForm.builder().email("awdawd").password("awd").build();
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-        signUpService.createUser(signUpForm);
-    }
+  @Test
+  public void withValidSignUpFormSignUpServiceCreateUser() {
+    signUpForm = SignUpForm.builder().email("awdawd").password("awd").build();
+    this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+    signUpService.createUser(signUpForm);
+  }
 }

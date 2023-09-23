@@ -21,16 +21,15 @@ import static com.estesting.dependencies.commons.Endpoint.SIGN_UP_ENDPOINT;
 @RestController
 @Validated
 public class SignUpController {
-    private static final Logger log = LoggerFactory.getLogger(SignUpController.class);
-    @Autowired
-    private SignUpServiceImpl signUpService;
+  private static final Logger log = LoggerFactory.getLogger(SignUpController.class);
+  @Autowired private SignUpServiceImpl signUpService;
 
-    @SneakyThrows
-    @PostMapping(value = SIGN_UP_ENDPOINT, consumes = "application/json")
-    public @ResponseBody ResponseEntity<Object> signUp(
-            @RequestBody @Valid SignUpForm signUpForm, BindingResult bindingResult) {
-        signUpService.createUser(signUpForm);
-        log.info("user: " + signUpForm.getFormData() + " singup");
-        return new ResponseEntity<>("user: " + signUpForm.getFormData() + " signup", HttpStatus.OK);
-    }
+  @SneakyThrows
+  @PostMapping(value = SIGN_UP_ENDPOINT, consumes = "application/json")
+  public @ResponseBody ResponseEntity<Object> signUp(
+      @RequestBody @Valid SignUpForm signUpForm, BindingResult bindingResult) {
+    signUpService.createUser(signUpForm);
+    log.info("user: " + signUpForm.getFormData() + " singup");
+    return new ResponseEntity<>("user: " + signUpForm.getFormData() + " signup", HttpStatus.OK);
+  }
 }

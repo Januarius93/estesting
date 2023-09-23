@@ -22,17 +22,16 @@ import static com.estesting.dependencies.commons.Endpoint.PASSWORD_RESET_ENDPOIN
 @Controller
 @Validated
 public class PasswordResetController {
-    private static final Logger log = LoggerFactory.getLogger(PasswordResetController.class);
-    @Autowired
-    private PasswordResetService passwordResetService;
+  private static final Logger log = LoggerFactory.getLogger(PasswordResetController.class);
+  @Autowired private PasswordResetService passwordResetService;
 
-    @SneakyThrows
-    @PostMapping(value = PASSWORD_RESET_ENDPOINT, consumes = "application/json")
-    public @ResponseBody ResponseEntity<Object> resetPassword(
-            @RequestBody @Valid @JsonFormat PasswordResetForm passwordResetForm, BindingResult bindingResult) {
-        passwordResetService.resetPassword(passwordResetForm);
-        log.info("user: RESET");
-        return new ResponseEntity<>(passwordResetForm.getFormData() + " user:  RESET", HttpStatus.OK);
-    }
+  @SneakyThrows
+  @PostMapping(value = PASSWORD_RESET_ENDPOINT, consumes = "application/json")
+  public @ResponseBody ResponseEntity<Object> resetPassword(
+      @RequestBody @Valid @JsonFormat PasswordResetForm passwordResetForm,
+      BindingResult bindingResult) {
+    passwordResetService.resetPassword(passwordResetForm);
+    log.info("user: RESET");
+    return new ResponseEntity<>(passwordResetForm.getFormData() + " user:  RESET", HttpStatus.OK);
+  }
 }
-

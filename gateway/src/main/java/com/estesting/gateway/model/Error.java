@@ -7,8 +7,6 @@ import java.util.List;
 
 @Getter
 public class Error {
-    @Setter
-    private String error;
-    @Setter
-    private List<String> message;
+  @Setter private String error;
+  @Setter private List<String> message;
 }

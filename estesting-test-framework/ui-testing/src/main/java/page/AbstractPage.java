@@ -1,4 +1,3 @@
 package page;
 
-public class AbstractPage {
-}
+public class AbstractPage {}

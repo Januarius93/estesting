@@ -25,35 +25,50 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(SignInController.class)
 public class SignInControllerTest extends AbstractUnitTest {
 
-    @Test
-    public void withValidSignInDataSignInShouldReturnSuccessWithHttp200() throws Exception {
-        SignInForm validSignInForm = buildValidSignInForm();
-        mockMvc
-                .perform(
-                        post(SIGN_IN_ENDPOINT)
-                                .content(validSignInForm.getFormData())
-                                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(
-                        content()
-                                .string(
-                                        containsString(
-                                                String.format("user: %s SignIn", validSignInForm.getFormData()))))
-                .andReturn();
-    }
+  @Test
+  public void withValidSignInDataSignInShouldReturnSuccessWithHttp200() throws Exception {
+    SignInForm validSignInForm = buildValidSignInForm();
+    mockMvc
+        .perform(
+            post(SIGN_IN_ENDPOINT)
+                .content(validSignInForm.getFormData())
+                .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(
+            content()
+                .string(
+                    containsString(
+                        String.format("user: %s SignIn", validSignInForm.getFormData()))))
+        .andReturn();
+  }
 
-    @SneakyThrows
-    @Test(dataProvider = "invalidSignInForm", dataProviderClass = UnitTestDataProvider.class)
-    public void withInvalidSignInDataSignInShouldReturnErrorsAndHttp400(
-            SignInForm signInForm, List<String> errorCodes) {
-        mvcResult =
-                mockMvc
-                        .perform(
-                                post(SIGN_IN_ENDPOINT)
-                                        .content(signInForm.getFormData())
-                                        .contentType(MediaType.APPLICATION_JSON))
-                        .andReturn();
-        assertThatStatusCodeIs400(mvcResult);
-        assertThatResponseContainsErrorCodes(mvcResult, errorCodes);
-    }
+  @SneakyThrows
+  @Test(dataProvider = "invalidSignInForm", dataProviderClass = UnitTestDataProvider.class)
+  public void withInvalidSignInDataSignInShouldReturnErrorsAndHttp400(
+      SignInForm signInForm, List<String> errorCodes) {
+    mvcResult =
+        mockMvc
+            .perform(
+                post(SIGN_IN_ENDPOINT)
+                    .content(signInForm.getFormData())
+                    .contentType(MediaType.APPLICATION_JSON))
+            .andReturn();
+    assertThatStatusCodeIs400(mvcResult);
+    assertThatResponseContainsErrorCodes(mvcResult, errorCodes);
+  }
+
+  @SneakyThrows
+  @Test(dataProvider = "invalidFieldSizeSignInForm", dataProviderClass = UnitTestDataProvider.class)
+  public void withInvalidFieldsSizeSignInShouldReturnErrorsAndHttp400(
+      SignInForm signInForm, List<String> errorCodes) {
+    mvcResult =
+        mockMvc
+            .perform(
+                post(SIGN_IN_ENDPOINT)
+                    .content(signInForm.getFormData())
+                    .contentType(MediaType.APPLICATION_JSON))
+            .andReturn();
+    assertThatStatusCodeIs400(mvcResult);
+    assertThatResponseContainsErrorCodes(mvcResult, errorCodes);
+  }
 }

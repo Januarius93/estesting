@@ -1,10 +1,10 @@
 package com.estesting.gateway.model;
 
+import static com.estesting.dependencies.commons.Regex.EMAIL_REGEX;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
-
-import static com.estesting.dependencies.commons.Regex.EMAIL_REGEX;
 
 @Setter
 @Getter
