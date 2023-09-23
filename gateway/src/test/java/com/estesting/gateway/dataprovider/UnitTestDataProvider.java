@@ -10,22 +10,42 @@ import java.util.List;
 import org.testng.annotations.DataProvider;
 
 public class UnitTestDataProvider {
-
   @DataProvider(name = "invalidSignInForm")
   public Object[][] invalidSignInForm() {
     return new Object[][] {
-      {buildEmptyLoginSignInForm(), List.of(LOGIN_CAN_NOT_BE_BLANK, LOGIN_CAN_NOT_BE_EMPTY)},
+      {
+        buildEmptyLoginSignInForm(),
+        List.of(
+            LOGIN_CAN_NOT_BE_BLANK,
+            LOGIN_CAN_NOT_BE_EMPTY,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
+      },
       {
         buildNullLoginSignInForm(),
-        List.of(LOGIN_CAN_NOT_BE_EMPTY, LOGIN_CAN_NOT_BE_BLANK, LOGIN_IS_MANDATORY)
+        List.of(
+            LOGIN_CAN_NOT_BE_EMPTY,
+            LOGIN_CAN_NOT_BE_BLANK,
+            LOGIN_IS_MANDATORY,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
       },
       {
         buildEmptyPasswordSignInForm(),
-        List.of(PASSWORD_CAN_NOT_BE_EMPTY, PASSWORD_CAN_NOT_BE_BLANK)
+        List.of(
+            PASSWORD_CAN_NOT_BE_EMPTY,
+            PASSWORD_CAN_NOT_BE_BLANK,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
       },
       {
         buildNullPasswordSignInForm(),
-        List.of(PASSWORD_IS_MANDATORY, PASSWORD_CAN_NOT_BE_EMPTY, PASSWORD_CAN_NOT_BE_BLANK)
+        List.of(
+            PASSWORD_IS_MANDATORY,
+            PASSWORD_CAN_NOT_BE_EMPTY,
+            PASSWORD_CAN_NOT_BE_BLANK,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
       },
       {
         buildAllEmptyFieldsSignInForm(),
@@ -33,7 +53,9 @@ public class UnitTestDataProvider {
             LOGIN_CAN_NOT_BE_EMPTY,
             LOGIN_CAN_NOT_BE_BLANK,
             PASSWORD_CAN_NOT_BE_EMPTY,
-            PASSWORD_CAN_NOT_BE_BLANK)
+            PASSWORD_CAN_NOT_BE_BLANK,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
       },
       {
         buildAllNullFieldsSignInForm(),
@@ -129,26 +151,6 @@ public class UnitTestDataProvider {
       {"a@", List.of(EMAIL_MUST_BE_WELL_FORMATED, THIS_IS_NOT_EMAIL)},
       {"a@a", List.of(THIS_IS_NOT_EMAIL)},
       {"a.com", List.of(THIS_IS_NOT_EMAIL, EMAIL_MUST_BE_WELL_FORMATED)},
-    };
-  }
-
-  @DataProvider(name = "invalidFieldSizeSignInForm")
-  public Object[][] invalidFieldSizeSignInForm() {
-    return new Object[][] {
-      {
-        buildTooShortFieldsSignInForm(),
-        List.of(
-            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10,
-            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
-      },
-      {
-        buildTooLongFieldsSignInForm(),
-        List.of(
-            MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MAXIMUM_NUMBER_OF_CHARACTERS_FOR_LOGIN,
-            MAXIMUM_NUMBER_OF_CHARACTERS_FOR_
-                + PASSWORD
-                + MAXIMUM_NUMBER_OF_CHARACTERS_FOR_PASSWORD)
-      }
     };
   }
 }

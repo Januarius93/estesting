@@ -16,6 +16,12 @@ public class SignUpForm implements Form {
   @NotEmpty(message = EMAIL_CAN_NOT_BE_EMPTY)
   @Pattern(regexp = EMAIL_REGEX, message = THIS_IS_NOT_EMAIL)
   @Email(message = EMAIL_MUST_BE_WELL_FORMATED)
+  @Size(
+      min = 3,
+      message = MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + EMAIL + MINIMUM_NUMBER_OF_CHARACTERS_3)
+  @Size(
+      max = 50,
+      message = MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + EMAIL + MAXIMUM_NUMBER_OF_CHARACTERS_50)
   private String email;
 
   @NotBlank(message = USERNAME_CAN_NOT_BE_BLANK)

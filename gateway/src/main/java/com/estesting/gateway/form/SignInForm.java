@@ -21,7 +21,7 @@ public class SignInForm implements Form {
       message = MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10)
   @Size(
       max = 50,
-      message = MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MAXIMUM_NUMBER_OF_CHARACTERS_FOR_LOGIN)
+      message = MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MAXIMUM_NUMBER_OF_CHARACTERS_50)
   private String login;
 
   @NotBlank(message = PASSWORD_CAN_NOT_BE_BLANK)

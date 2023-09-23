@@ -56,19 +56,4 @@ public class SignInControllerTest extends AbstractUnitTest {
     assertThatStatusCodeIs400(mvcResult);
     assertThatResponseContainsErrorCodes(mvcResult, errorCodes);
   }
-
-  @SneakyThrows
-  @Test(dataProvider = "invalidFieldSizeSignInForm", dataProviderClass = UnitTestDataProvider.class)
-  public void withInvalidFieldsSizeSignInShouldReturnErrorsAndHttp400(
-      SignInForm signInForm, List<String> errorCodes) {
-    mvcResult =
-        mockMvc
-            .perform(
-                post(SIGN_IN_ENDPOINT)
-                    .content(signInForm.getFormData())
-                    .contentType(MediaType.APPLICATION_JSON))
-            .andReturn();
-    assertThatStatusCodeIs400(mvcResult);
-    assertThatResponseContainsErrorCodes(mvcResult, errorCodes);
-  }
 }

@@ -5,7 +5,7 @@ import com.estesting.gateway.form.SignInForm;
 public class SignInFormTestData {
 
   public static SignInForm buildValidSignInForm() {
-    return SignInForm.builder().login("Joshua").password("somepwd").build();
+    return SignInForm.builder().login("Josh567890").password("some567890").build();
   }
 
   public static SignInForm buildEmptyLoginSignInForm() {
