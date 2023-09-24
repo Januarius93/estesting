@@ -27,11 +27,24 @@ public class SignUpForm implements Form {
   @NotBlank(message = USERNAME_CAN_NOT_BE_BLANK)
   @NotNull(message = USERNAME_CAN_NOT_BE_NULL)
   @NotEmpty(message = USERNAME_CAN_NOT_BE_EMPTY)
+  @Size(
+      min = 3,
+      message = MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + USERNAME + MINIMUM_NUMBER_OF_CHARACTERS_3)
+  @Size(
+      max = 50,
+      message = MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + USERNAME + MAXIMUM_NUMBER_OF_CHARACTERS_50)
   private String username;
 
   @NotBlank(message = PASSWORD_CAN_NOT_BE_BLANK)
   @NotNull(message = PASSWORD_CAN_NOT_BE_NULL)
   @NotEmpty(message = PASSWORD_CAN_NOT_BE_EMPTY)
+  @Size(
+      min = 10,
+      message = MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
+  @Size(
+      max = 200,
+      message =
+          MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MAXIMUM_NUMBER_OF_CHARACTERS_FOR_PASSWORD)
   private String password;
 
   @NotNull(message = AGE_CAN_NOT_BE_NULL)

@@ -1,5 +1,7 @@
 package com.estesting.gateway.controller;
 
+import static com.estesting.dependencies.commons.Endpoint.PASSWORD_RESET_ENDPOINT;
+
 import com.estesting.gateway.form.PasswordResetForm;
 import com.estesting.gateway.service.PasswordResetService;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -16,8 +18,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import static com.estesting.dependencies.commons.Endpoint.PASSWORD_RESET_ENDPOINT;
 
 @Controller
 @Validated

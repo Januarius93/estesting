@@ -17,8 +17,8 @@ public class SignInForm implements Form {
   @NotEmpty(message = LOGIN_CAN_NOT_BE_EMPTY)
   @NotNull(message = LOGIN_IS_MANDATORY)
   @Size(
-      min = 10,
-      message = MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10)
+      min = 3,
+      message = MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_3)
   @Size(
       max = 50,
       message = MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MAXIMUM_NUMBER_OF_CHARACTERS_50)
@@ -29,8 +29,7 @@ public class SignInForm implements Form {
   @NotNull(message = PASSWORD_IS_MANDATORY)
   @Size(
       min = 10,
-      message =
-          MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
+      message = MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
   @Size(
       max = 200,
       message =

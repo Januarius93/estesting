@@ -1,11 +1,11 @@
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.containsString;
+
 import io.restassured.http.ContentType;
 import model.User;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.containsString;
 
 public class SignInTest {
   User user = new User("Mateo", "");

@@ -28,6 +28,5 @@ public class ErrorCodes {
   public static final String MINIMUM_NUMBER_OF_CHARACTERS_10 = " is 10";
   public static final String MINIMUM_NUMBER_OF_CHARACTERS_3 = " is 3";
   public static final String MAXIMUM_NUMBER_OF_CHARACTERS_50 = " is 50";
-
   public static final String MAXIMUM_NUMBER_OF_CHARACTERS_FOR_PASSWORD = " is 200";
 }

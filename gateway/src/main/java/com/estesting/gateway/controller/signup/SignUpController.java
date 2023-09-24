@@ -1,5 +1,7 @@
 package com.estesting.gateway.controller.signup;
 
+import static com.estesting.dependencies.commons.Endpoint.SIGN_UP_ENDPOINT;
+
 import com.estesting.gateway.form.SignUpForm;
 import com.estesting.gateway.service.SignUpServiceImpl;
 import jakarta.validation.Valid;
@@ -15,8 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import static com.estesting.dependencies.commons.Endpoint.SIGN_UP_ENDPOINT;
 
 @RestController
 @Validated

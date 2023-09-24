@@ -1,13 +1,13 @@
 package com.estesting.gateway.form;
 
+import static com.estesting.dependencies.commons.ErrorCodes.*;
+import static com.estesting.dependencies.commons.FormRequestAttributes.EMAIL;
+import static com.estesting.dependencies.commons.Regex.EMAIL_REGEX;
+
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONObject;
-
-import static com.estesting.dependencies.commons.ErrorCodes.*;
-import static com.estesting.dependencies.commons.FormRequestAttributes.EMAIL;
-import static com.estesting.dependencies.commons.Regex.EMAIL_REGEX;
 
 @Getter
 // @AllArgsConstructor

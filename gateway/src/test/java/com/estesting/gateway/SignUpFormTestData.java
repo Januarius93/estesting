@@ -8,16 +8,16 @@ public class SignUpFormTestData {
     return SignUpForm.builder()
         .email("somepropermail@mail.com")
         .username("someusername")
-        .password("somepwd")
+        .password("someusernamepwd")
         .age(18)
         .build();
   }
 
   public static SignUpForm buildInvalidEmailFormatSignUpForm() {
     return SignUpForm.builder()
-        .email("wrongmail")
+        .email("a.")
         .username("someusername")
-        .password("somepwd")
+        .password("someusernamepwd")
         .age(21)
         .build();
   }
@@ -26,7 +26,7 @@ public class SignUpFormTestData {
     return SignUpForm.builder()
         .email("")
         .username("someusername")
-        .password("somepwd")
+        .password("someusernamepwd")
         .age(18)
         .build();
   }
@@ -35,7 +35,7 @@ public class SignUpFormTestData {
     return SignUpForm.builder()
         .email("somepropermail@mail.com")
         .username("")
-        .password("somepwd")
+        .password("somepwdsomepwd")
         .age(18)
         .build();
   }
@@ -53,7 +53,7 @@ public class SignUpFormTestData {
     return SignUpForm.builder()
         .email("somepropermail@mail.com")
         .username("someusername")
-        .password("somepwd")
+        .password("someusernamepwd")
         .age(17)
         .build();
   }
@@ -62,7 +62,7 @@ public class SignUpFormTestData {
     return SignUpForm.builder()
         .email("somepropermail@mail.com")
         .username("someusername")
-        .password("somepwd")
+        .password("someusernamepwd")
         .age(101)
         .build();
   }
@@ -77,5 +77,34 @@ public class SignUpFormTestData {
 
   public static SignUpForm buildNoDataSignUpForm() {
     return SignUpForm.builder().build();
+  }
+
+  public static SignUpForm buildAllFieldsSmallerInvalidSizeDataSignUpForm() {
+    return SignUpForm.builder()
+        .email("a@")
+        .username("dowp4odpl")
+        .password("dowlfospl")
+        .age(17)
+        .build();
+  }
+
+  public static SignUpForm buildAllFieldsGreaterInvalidSizeDataSignUpForm() {
+    return SignUpForm.builder()
+        .email(
+            "somepropermailsomepropermailsomepropermailsomepropermailsomepropermailsomepropermailsomepropermailsomepropermailsomepropermailsomepropermailsomepropermailsomepropermailsomepropermailsomepropermail@mail.com")
+        .username(
+            "    \"pcpdqiqwkdzvxuvlaiurlwodysskyweznqxczjucyjxzpgqtaix\\n\"\n"
+                + "                + \"zgccllkitapgknujfpkijhgvkjrkhkjpvoefivpvgoztkxxuxke\\n\"\n"
+                + "                + \"nihywrklocubigvoidniczwzkcxbelnwdehytzujmflwfjccxsh\\n\"\n"
+                + "                + \"agfwvmxbecvhjvrzlijnmorxkzbqhghbtxwfgkagijhsauyqxaj\\n\"\n"
+                + "                + \"pezfpohldpulgaueppxdfligucpgplwufurvgazoxtuwelbukch\"")
+        .password(
+            " \"mwbiuqswqwzkaakqzdwayxihjbsquemoqdrezabltnrkrngnptywpspobmhfcytycvukhihgwlhsudfweusiuicvfmodanvsjctbootivoxrrckvznowmkumkcpcmnkkpjugdqfjkpklazumblhfmamnzqlrlaovtejgfeewgswpvoogodppguqffbnogvnfscmhdnomz\\n\"\n"
+                + "                + \"skmzhlctbxzjrfeiwgjwvfveyyzlahlrwwhvugdbfqxlwqqkbkznamsmdunwgokzlitdwkbkijeysefjioteirplkfpymsuduthnlwhfpiwrxpoikvitjgmzyhxjastpauwhiwyfzptlqxkknmlewthhgrzliqkguvwgdmvuhzkzwhparpjesaurcgdpouumqtbljzzeg\\n\"\n"
+                + "                + \"evfdcdtgmbzdzgyhcriipopucrfgupiojljfuhvurgpabuycbxnkclvhyaopdqrzneqeskzpjmhfviivwuqhecfsvgvchfpkacoelmlkxafzpwyttxxzlblfepzlyfevqqatqrszzyrhmtgdfygezdwowikiqlawcmlwkkrxadmtmqwyazsftdxztvezzqprgzcqlhcby\\n\"\n"
+                + "                + \"fajgkilqxgmeumrrmkkeraiwkxzkltidujqqwjjfatwlhjrcsoftinbxnolwydhkiycsosemictxnmdmwtjadcfsskxqfkzshsjohpthvclptkquwuymicjdwniqatczpxztzhghtzhtzseactouzonubgcipbyvtgrpxcbgvpakbpgptkxqkirfkcdelhfesocouxocw\\n\"\n"
+                + "                + \"jabywkkgvoawtwzzctmrlqvxcacbdlpunouluypeegbexdrrhqyzlxhsfrechlekptyzpqhwpljfqphboidhbwkefnwwlkejmlcmahzbmzmrdejzmzqozvzooswmjqbrrbielixjxswbtjuecicivcvtdcnpgcadilgecozrrueqnwyxexndeehgijpkgktwzvbcsrvvc\"")
+        .age(101)
+        .build();
   }
 }

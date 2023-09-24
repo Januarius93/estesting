@@ -1,10 +1,10 @@
 package com.estesting.gateway.dataprovider;
 
 import static com.estesting.dependencies.commons.ErrorCodes.*;
-import static com.estesting.dependencies.commons.FormRequestAttributes.LOGIN;
-import static com.estesting.dependencies.commons.FormRequestAttributes.PASSWORD;
+import static com.estesting.dependencies.commons.FormRequestAttributes.*;
 import static com.estesting.gateway.SignInFormTestData.*;
 import static com.estesting.gateway.SignUpFormTestData.*;
+import static com.estesting.gateway.SignUpFormTestData.buildAllFieldsSmallerInvalidSizeDataSignUpForm;
 
 import java.util.List;
 import org.testng.annotations.DataProvider;
@@ -18,7 +18,7 @@ public class UnitTestDataProvider {
         List.of(
             LOGIN_CAN_NOT_BE_BLANK,
             LOGIN_CAN_NOT_BE_EMPTY,
-            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_3,
             MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
       },
       {
@@ -27,7 +27,7 @@ public class UnitTestDataProvider {
             LOGIN_CAN_NOT_BE_EMPTY,
             LOGIN_CAN_NOT_BE_BLANK,
             LOGIN_IS_MANDATORY,
-            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_3,
             MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
       },
       {
@@ -35,7 +35,7 @@ public class UnitTestDataProvider {
         List.of(
             PASSWORD_CAN_NOT_BE_EMPTY,
             PASSWORD_CAN_NOT_BE_BLANK,
-            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_3,
             MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
       },
       {
@@ -44,7 +44,7 @@ public class UnitTestDataProvider {
             PASSWORD_IS_MANDATORY,
             PASSWORD_CAN_NOT_BE_EMPTY,
             PASSWORD_CAN_NOT_BE_BLANK,
-            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_3,
             MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
       },
       {
@@ -54,7 +54,7 @@ public class UnitTestDataProvider {
             LOGIN_CAN_NOT_BE_BLANK,
             PASSWORD_CAN_NOT_BE_EMPTY,
             PASSWORD_CAN_NOT_BE_BLANK,
-            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MINIMUM_NUMBER_OF_CHARACTERS_3,
             MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
       },
       {
@@ -84,19 +84,33 @@ public class UnitTestDataProvider {
   public Object[][] invalidDataSignUpForm() {
     return new Object[][] {
       {
-        buildInvalidEmailFormatSignUpForm(), List.of(THIS_IS_NOT_EMAIL, EMAIL_MUST_BE_WELL_FORMATED)
+        buildInvalidEmailFormatSignUpForm(),
+        List.of(
+            THIS_IS_NOT_EMAIL,
+            EMAIL_MUST_BE_WELL_FORMATED,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + EMAIL + MINIMUM_NUMBER_OF_CHARACTERS_3)
       },
       {
         buildEmptyEmailSignUpForm(),
-        List.of(EMAIL_CAN_NOT_BE_EMPTY, EMAIL_CAN_NOT_BE_BLANK, THIS_IS_NOT_EMAIL)
+        List.of(
+            EMAIL_CAN_NOT_BE_EMPTY,
+            EMAIL_CAN_NOT_BE_BLANK,
+            THIS_IS_NOT_EMAIL,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + EMAIL + MINIMUM_NUMBER_OF_CHARACTERS_3)
       },
       {
         buildEmptyUserNameSignUpForm(),
-        List.of(USERNAME_CAN_NOT_BE_EMPTY, USERNAME_CAN_NOT_BE_BLANK)
+        List.of(
+            USERNAME_CAN_NOT_BE_EMPTY,
+            USERNAME_CAN_NOT_BE_BLANK,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + USERNAME + MINIMUM_NUMBER_OF_CHARACTERS_3)
       },
       {
         buildEmptyPasswordSignUpForm(),
-        List.of(PASSWORD_CAN_NOT_BE_EMPTY, PASSWORD_CAN_NOT_BE_BLANK)
+        List.of(
+            PASSWORD_CAN_NOT_BE_EMPTY,
+            PASSWORD_CAN_NOT_BE_BLANK,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
       },
       {buildAgeBelow18SignUpForm(), List.of(AGE_CAN_NOT_BE_SMALLER_THAN_18)},
       {buildAgeAbove100SignUpForm(), List.of(AGE_CAN_NOT_BE_GREATER_THAN_100)},
@@ -110,7 +124,10 @@ public class UnitTestDataProvider {
             USERNAME_CAN_NOT_BE_EMPTY,
             EMAIL_CAN_NOT_BE_BLANK,
             PASSWORD_CAN_NOT_BE_BLANK,
-            AGE_CAN_NOT_BE_GREATER_THAN_100)
+            AGE_CAN_NOT_BE_GREATER_THAN_100,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + USERNAME + MINIMUM_NUMBER_OF_CHARACTERS_3,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + EMAIL + MINIMUM_NUMBER_OF_CHARACTERS_3,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
       },
       {
         buildAllNullFieldsSignUpForm(),
@@ -140,6 +157,26 @@ public class UnitTestDataProvider {
             USERNAME_CAN_NOT_BE_BLANK,
             PASSWORD_CAN_NOT_BE_NULL)
       },
+      {
+        buildAllFieldsSmallerInvalidSizeDataSignUpForm(),
+        List.of(
+            EMAIL_MUST_BE_WELL_FORMATED,
+            THIS_IS_NOT_EMAIL,
+            AGE_CAN_NOT_BE_SMALLER_THAN_18,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + EMAIL + MINIMUM_NUMBER_OF_CHARACTERS_3)
+      },
+      {
+        buildAllFieldsGreaterInvalidSizeDataSignUpForm(),
+        List.of(
+            MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + EMAIL + MAXIMUM_NUMBER_OF_CHARACTERS_50,
+            MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + USERNAME + MAXIMUM_NUMBER_OF_CHARACTERS_50,
+            MAXIMUM_NUMBER_OF_CHARACTERS_FOR_
+                + PASSWORD
+                + MAXIMUM_NUMBER_OF_CHARACTERS_FOR_PASSWORD,
+            AGE_CAN_NOT_BE_GREATER_THAN_100,
+            EMAIL_MUST_BE_WELL_FORMATED)
+      }
     };
   }
 
