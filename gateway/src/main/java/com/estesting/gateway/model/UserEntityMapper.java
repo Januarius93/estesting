@@ -9,15 +9,14 @@ import lombok.SneakyThrows;
 
 @Getter
 public class UserEntityMapper {
-    @Setter
-    private Form userForm;
+  @Setter private Form userForm;
 
-    public UserEntityMapper(SignUpForm signUpForm) {
-        this.userForm = signUpForm;
-    }
+  public UserEntityMapper(SignUpForm signUpForm) {
+    this.userForm = signUpForm;
+  }
 
-    @SneakyThrows
-    public User generateUser() {
-        return new ObjectMapper().readValue(userForm.getFormData(), User.class);
-    }
+  @SneakyThrows
+  public User generateUser() {
+    return new ObjectMapper().readValue(userForm.getFormData(), User.class);
+  }
 }

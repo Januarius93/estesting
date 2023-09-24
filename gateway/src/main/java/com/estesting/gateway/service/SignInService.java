@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SignInService {
-    private Authentication authentication = new Authentication();
+  private Authentication authentication = new Authentication();
 
-    public void signIn(SignInForm SignInFrom) {
-        authentication.authenticateUser(SignInFrom);
-    }
+  public void signIn(SignInForm SignInFrom) {
+    authentication.authenticateUser(SignInFrom);
+  }
 }

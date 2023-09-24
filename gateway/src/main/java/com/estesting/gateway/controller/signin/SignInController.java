@@ -1,5 +1,7 @@
 package com.estesting.gateway.controller.signin;
 
+import static com.estesting.dependencies.commons.Endpoint.SIGN_IN_ENDPOINT;
+
 import com.estesting.gateway.form.SignInForm;
 import com.estesting.gateway.service.SignInService;
 import jakarta.validation.Valid;
@@ -16,20 +18,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.estesting.dependencies.commons.Endpoint.SIGN_IN_ENDPOINT;
-
 @RestController
 @Validated
 public class SignInController {
-    private static final Logger log = LoggerFactory.getLogger(SignInController.class);
-    @Autowired
-    private SignInService signInService;
+  private static final Logger log = LoggerFactory.getLogger(SignInController.class);
+  @Autowired private SignInService signInService;
 
-    @SneakyThrows
-    @PostMapping(value = SIGN_IN_ENDPOINT, consumes = "application/json")
-    public @ResponseBody ResponseEntity<Object> signIn(
-            @RequestBody @Valid SignInForm signInForm, BindingResult bindingResult) {
-        signInService.signIn(signInForm);
-        return new ResponseEntity<>("user: " + signInForm.getFormData() + " SignIn", HttpStatus.OK);
-    }
+  @SneakyThrows
+  @PostMapping(value = SIGN_IN_ENDPOINT, consumes = "application/json")
+  public @ResponseBody ResponseEntity<Object> signIn(
+      @RequestBody @Valid SignInForm signInForm, BindingResult bindingResult) {
+    signInService.signIn(signInForm);
+    return new ResponseEntity<>("user: " + signInForm.getFormData() + " SignIn", HttpStatus.OK);
+  }
 }

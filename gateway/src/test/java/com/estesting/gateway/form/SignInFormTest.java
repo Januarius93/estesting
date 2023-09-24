@@ -1,6 +1,3 @@
 package com.estesting.gateway.form;
 
-public class SignInFormTest {
-
-
-}
+public class SignInFormTest {}

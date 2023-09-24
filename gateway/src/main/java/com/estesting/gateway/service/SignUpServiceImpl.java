@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SignUpServiceImpl implements SignUpService {
-    @Autowired
-    private UserRepository userRepository;
+  @Autowired private UserRepository userRepository;
 
-    @Override
-    public void createUser(SignUpForm signUpForm) {
-        User user = new UserEntityMapper(signUpForm).generateUser();
-        userRepository.save(user);
-    }
+  @Override
+  public void createUser(SignUpForm signUpForm) {
+    User user = new UserEntityMapper(signUpForm).generateUser();
+    userRepository.save(user);
+  }
 }

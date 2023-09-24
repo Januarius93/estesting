@@ -9,8 +9,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class Credentials {
-    @Setter
-    String username;
-    @Setter
-    String password;
+  @Setter String username;
+  @Setter String password;
 }
