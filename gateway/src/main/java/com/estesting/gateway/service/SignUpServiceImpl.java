@@ -32,11 +32,13 @@ public class SignUpServiceImpl implements SignUpService {
       return new ResponseEntity(
           new Message(
                   HttpStatus.BAD_REQUEST,
-                  List.of("User " + user.getUsername() + " already exist" + " in db")).getResponseMessage(),
+                  List.of("User " + user.getUsername() + " already exist" + " in db"))
+              .getResponseMessage(),
           HttpStatus.BAD_REQUEST);
     }
     return new ResponseEntity(
-        new Message(HttpStatus.OK, List.of("User " + user.getUsername() + " created")).getResponseMessage(),
+        new Message(HttpStatus.OK, List.of("User " + user.getUsername() + " created"))
+            .getResponseMessage(),
         HttpStatus.OK);
   }
 }
