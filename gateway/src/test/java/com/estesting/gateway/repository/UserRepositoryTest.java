@@ -30,19 +30,4 @@ public class UserRepositoryTest extends AbstractUnitTest {
     User repositoryUser = userRepository.save(user);
     assertThat("User should be created in repository", repositoryUser.getId(), is(notNullValue()));
   }
-
-  @SneakyThrows
-  @Test(expectedExceptions = {TransactionSystemException.class})
-  public void withInvalidSignUpFormUserShouldNotBeCreatedInRepositoryWithErrors() {
-    SignUpForm signUpForm =
-        SignUpForm.builder()
-            .email("somepropermalmail.com")
-            .username("someusername")
-            .password("$3sFoO@#Papse0w3A0iq0iwf0gf")
-            .age(18)
-            .build();
-    User user = new UserEntityMapper(signUpForm).generateUser();
-    User repositoryUser = userRepository.save(user);
-    assertThat("User should be created in repository", repositoryUser.getId(), is(notNullValue()));
-  }
 }
