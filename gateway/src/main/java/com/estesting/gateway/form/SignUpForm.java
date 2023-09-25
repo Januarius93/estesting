@@ -6,6 +6,7 @@ import static com.estesting.dependencies.commons.Regex.EMAIL_REGEX;
 
 import jakarta.validation.constraints.*;
 import lombok.Builder;
+import lombok.Getter;
 import org.json.JSONObject;
 
 @Builder
@@ -22,6 +23,7 @@ public class SignUpForm implements Form {
   @Size(
       max = 50,
       message = MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + EMAIL + MAXIMUM_NUMBER_OF_CHARACTERS_50)
+  @Getter
   private String email;
 
   @NotBlank(message = USERNAME_CAN_NOT_BE_BLANK)
@@ -33,6 +35,7 @@ public class SignUpForm implements Form {
   @Size(
       max = 50,
       message = MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + USERNAME + MAXIMUM_NUMBER_OF_CHARACTERS_50)
+  @Getter
   private String username;
 
   @NotBlank(message = PASSWORD_CAN_NOT_BE_BLANK)
@@ -45,8 +48,10 @@ public class SignUpForm implements Form {
       max = 200,
       message =
           MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MAXIMUM_NUMBER_OF_CHARACTERS_FOR_PASSWORD)
+  @Getter
   private String password;
 
+  @Getter
   @NotNull(message = AGE_CAN_NOT_BE_NULL)
   @Positive(message = AGE_CAN_NOT_BE_NEGATIVE)
   @Min(value = 18, message = AGE_CAN_NOT_BE_SMALLER_THAN_18)
