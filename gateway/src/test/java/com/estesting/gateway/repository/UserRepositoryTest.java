@@ -21,7 +21,7 @@ public class UserRepositoryTest extends AbstractUnitTest {
   @Test
   public void withValidSignUpFormUserShouldBeCreatedInRepository() {
     SignUpForm validSignUpForm = buildValidSignUpForm();
-    User user = new UserEntityMapper(validSignUpForm).generateUser();
+    User user = new UserEntityMapper(buildValidSignUpForm()).generateUser();
     User repositoryUser = userRepository.save(user);
     assertThat("User should be created in repository", repositoryUser.getId(), is(notNullValue()));
   }

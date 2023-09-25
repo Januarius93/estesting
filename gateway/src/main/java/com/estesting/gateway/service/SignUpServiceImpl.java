@@ -1,6 +1,7 @@
 package com.estesting.gateway.service;
 
 import com.estesting.gateway.controller.signup.SignUpController;
+import com.estesting.gateway.form.Form;
 import com.estesting.gateway.form.SignUpForm;
 import com.estesting.gateway.model.Message;
 import com.estesting.gateway.model.User;
@@ -20,7 +21,7 @@ public class SignUpServiceImpl implements SignUpService {
   @Autowired private UserRepository userRepository;
 
   @Override
-  public ResponseEntity<String> createUser(SignUpForm signUpForm) {
+  public ResponseEntity<String> createUser(Form signUpForm) {
     // the issue to review is that eventually could throw exception by other cause than user already
     // exists
     User user = new UserEntityMapper(signUpForm).generateUser();

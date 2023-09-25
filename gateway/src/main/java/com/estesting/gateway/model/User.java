@@ -19,6 +19,8 @@ public class User {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
+  private String login;
+
   @Pattern(regexp = EMAIL_REGEX, message = THIS_IS_NOT_EMAIL)
   @Column(name = "EMAIL", length = 50, nullable = false, unique = true)
   private String email;
