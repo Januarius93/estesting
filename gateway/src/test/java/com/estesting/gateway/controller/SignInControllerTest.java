@@ -35,11 +35,6 @@ import org.testng.annotations.Test;
 public class SignInControllerTest extends AbstractUnitTest {
   private SignInForm validSignInForm;
   private SignUpForm validSignUpForm;
-
-  @Mock private SignInService signInService;
-
-  @InjectMocks private SignInController signInController;
-
   @Autowired
   private UserRepository userRepository = Mockito.mock(UserRepository.class);
 
@@ -54,7 +49,7 @@ public class SignInControllerTest extends AbstractUnitTest {
                     .login(validSignUpForm.getEmail())
                     .password(validSignUpForm.getPassword())
                     .build();
-    
+
     mockMvc
         .perform(MockMvcRequestBuilders.
             post(SIGN_IN_ENDPOINT)
