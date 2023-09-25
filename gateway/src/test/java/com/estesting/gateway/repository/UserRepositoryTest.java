@@ -18,11 +18,6 @@ import org.testng.annotations.Test;
 public class UserRepositoryTest extends AbstractUnitTest {
   @Autowired private UserRepository userRepository = Mockito.mock(UserRepository.class);
 
-  //    @BeforeClass
-  //    public void beforeMethod() {
-  //        userRepository = Mockito.mock(UserRepository.class);
-  //    }
-
   @Test
   public void withValidSignUpFormUserShouldBeCreatedInRepository() {
     SignUpForm validSignUpForm = buildValidSignUpForm();
@@ -30,13 +25,4 @@ public class UserRepositoryTest extends AbstractUnitTest {
     User repositoryUser = userRepository.save(user);
     assertThat("User should be created in repository", repositoryUser.getId(), is(notNullValue()));
   }
-
-  //    @Test
-  //    public void withInvalidSignUpFormUserShouldNotBeCreatedInRepositoryWithErrors() {
-  //        User user = new
-  // UserEntityMapper(SignUpForm.builder().age(18).username("awd").password("awd").email("").build()).generateUser();
-  //        User repositoryUser = userRepository.save(user);
-  //        assertThat("User should be created in repository", repositoryUser.getId(),
-  // is(notNullValue()));
-  //    }
 }

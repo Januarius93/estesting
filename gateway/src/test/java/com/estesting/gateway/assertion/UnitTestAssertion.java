@@ -21,9 +21,10 @@ public class UnitTestAssertion extends AbstractUnitTest {
   @SneakyThrows
   public static void assertThatResponseContainsErrorCodes(
       MvcResult mvcResult, List<String> errorCodes) {
-    Error error = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), Error.class);
+    Error message =
+        objectMapper.readValue(mvcResult.getResponse().getContentAsString(), Error.class);
     assertThat(
-        errorCodes + "all contains in" + error.getMessage(),
-        errorCodes.containsAll(error.getMessage()));
+        errorCodes + "all contains in" + message.getMessage(),
+        errorCodes.containsAll(message.getMessage()));
   }
 }

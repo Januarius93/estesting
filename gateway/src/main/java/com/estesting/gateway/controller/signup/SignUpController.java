@@ -9,14 +9,10 @@ import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Validated
@@ -25,11 +21,9 @@ public class SignUpController {
   @Autowired private SignUpServiceImpl signUpService;
 
   @SneakyThrows
-  @PostMapping(value = SIGN_UP_ENDPOINT, consumes = "application/json")
-  public @ResponseBody ResponseEntity<Object> signUp(
+  @PutMapping(value = SIGN_UP_ENDPOINT, consumes = "application/json")
+  public @ResponseBody ResponseEntity<String> signUp(
       @RequestBody @Valid SignUpForm signUpForm, BindingResult bindingResult) {
-    signUpService.createUser(signUpForm);
-    log.info("user: " + signUpForm.getFormData() + " singup");
-    return new ResponseEntity<>("user: " + signUpForm.getFormData() + " signup", HttpStatus.OK);
+    return signUpService.createUser(signUpForm);
   }
 }
