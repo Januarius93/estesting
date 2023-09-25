@@ -1,5 +1,6 @@
 package com.estesting.gateway.repository;
 
+import static com.estesting.gateway.SignUpFormTestData.buildInvalidEmailFormatSignUpForm;
 import static com.estesting.gateway.SignUpFormTestData.buildValidSignUpForm;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -9,19 +10,18 @@ import com.estesting.gateway.AbstractUnitTest;
 import com.estesting.gateway.form.SignUpForm;
 import com.estesting.gateway.model.User;
 import com.estesting.gateway.model.UserEntityMapper;
+import jakarta.validation.ConstraintViolationException;
+import lombok.SneakyThrows;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.TransactionSystemException;
+import org.testng.TestException;
 import org.testng.annotations.Test;
 
 @SpringBootTest
 public class UserRepositoryTest extends AbstractUnitTest {
   @Autowired private UserRepository userRepository = Mockito.mock(UserRepository.class);
-
-  //    @BeforeClass
-  //    public void beforeMethod() {
-  //        userRepository = Mockito.mock(UserRepository.class);
-  //    }
 
   @Test
   public void withValidSignUpFormUserShouldBeCreatedInRepository() {
@@ -31,12 +31,18 @@ public class UserRepositoryTest extends AbstractUnitTest {
     assertThat("User should be created in repository", repositoryUser.getId(), is(notNullValue()));
   }
 
-  //    @Test
-  //    public void withInvalidSignUpFormUserShouldNotBeCreatedInRepositoryWithErrors() {
-  //        User user = new
-  // UserEntityMapper(SignUpForm.builder().age(18).username("awd").password("awd").email("").build()).generateUser();
-  //        User repositoryUser = userRepository.save(user);
-  //        assertThat("User should be created in repository", repositoryUser.getId(),
-  // is(notNullValue()));
-  //    }
+  @SneakyThrows
+  @Test(expectedExceptions = {TransactionSystemException.class})
+  public void withInvalidSignUpFormUserShouldNotBeCreatedInRepositoryWithErrors() {
+    SignUpForm signUpForm =
+        SignUpForm.builder()
+            .email("somepropermalmail.com")
+            .username("someusername")
+            .password("$3sFoO@#Papse0w3A0iq0iwf0gf")
+            .age(18)
+            .build();
+    User user = new UserEntityMapper(signUpForm).generateUser();
+    User repositoryUser = userRepository.save(user);
+    assertThat("User should be created in repository", repositoryUser.getId(), is(notNullValue()));
+  }
 }

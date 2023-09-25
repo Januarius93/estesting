@@ -1,5 +1,6 @@
 package com.estesting.gateway.model;
 
+import static com.estesting.dependencies.commons.ErrorCodes.THIS_IS_NOT_EMAIL;
 import static com.estesting.dependencies.commons.Regex.EMAIL_REGEX;
 
 import jakarta.persistence.*;
@@ -18,17 +19,17 @@ public class User {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @Pattern(regexp = EMAIL_REGEX)
+  @Pattern(regexp = EMAIL_REGEX , message = THIS_IS_NOT_EMAIL)
   @Column(name = "EMAIL", length = 50, nullable = false, unique = true)
   private String email;
 
   @Column(name = "USERNAME", length = 50, nullable = false, unique = true)
   private String username;
 
-  @Column(name = "PASSWORD", length = 50, nullable = false, unique = true)
+  @Column(name = "PASSWORD", length = 200, nullable = false)
   private String password;
 
-  @Column(name = "AGE", length = 50, nullable = false, unique = true)
+  @Column(name = "AGE", length = 3, nullable = false)
   private Integer age;
 
   @Enumerated(EnumType.STRING)

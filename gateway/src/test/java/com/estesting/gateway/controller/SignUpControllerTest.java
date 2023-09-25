@@ -6,6 +6,7 @@ import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatRespon
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatStatusCodeIs400;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,15 +32,12 @@ public class SignUpControllerTest extends AbstractUnitTest {
     SignUpForm validSignupForm = buildValidSignUpForm();
     mockMvc
         .perform(
-            post(SIGN_UP_ENDPOINT)
+            put(SIGN_UP_ENDPOINT)
                 .content(validSignupForm.getFormData())
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(
-            content()
-                .string(
-                    containsString(
-                        String.format("user: %s signup", validSignupForm.getFormData()))))
+            content().json("{\"message\":[\"User someusername created\"],\"code\":\"OK\"}"))
         .andReturn();
   }
 
@@ -50,7 +48,7 @@ public class SignUpControllerTest extends AbstractUnitTest {
     MvcResult mvcResult =
         mockMvc
             .perform(
-                post(SIGN_UP_ENDPOINT)
+                put(SIGN_UP_ENDPOINT)
                     .content(signUpFormData.getFormData())
                     .contentType(MediaType.APPLICATION_JSON))
             .andReturn();
