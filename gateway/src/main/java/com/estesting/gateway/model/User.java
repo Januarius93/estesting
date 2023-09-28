@@ -29,6 +29,7 @@ public class User {
   private String username;
 
   @Column(name = "PASSWORD", length = 200, nullable = false)
+  @Getter
   private String password;
 
   @Column(name = "AGE", length = 3, nullable = false)
