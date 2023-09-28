@@ -12,6 +12,14 @@ public class SignUpFormTestData {
         .age(18)
         .build();
   }
+  public static SignUpForm buildOtherValidSignUpForm() {
+    return SignUpForm.builder()
+            .email("somepropermailother@mail.com")
+            .username("someusernameother")
+            .password("someusernamepwd")
+            .age(18)
+            .build();
+  }
 
   public static SignUpForm buildInvalidEmailFormatSignUpForm() {
     return SignUpForm.builder()

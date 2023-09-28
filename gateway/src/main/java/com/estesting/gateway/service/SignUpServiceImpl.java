@@ -35,7 +35,7 @@ public class SignUpServiceImpl implements SignUpService {
       return new ResponseEntity(
           new Message(
                   HttpStatus.BAD_REQUEST,
-                  List.of("User " + user.getUsername() + " already exist" + " in db"))
+                  "User " + user.getUsername() + " already exist" + " in db")
               .getResponseMessage(),
           HttpStatus.BAD_REQUEST);
     }
