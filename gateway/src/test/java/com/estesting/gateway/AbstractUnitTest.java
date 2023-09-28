@@ -2,6 +2,7 @@ package com.estesting.gateway;
 
 import com.estesting.gateway.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.web.servlet.MockMvc;
@@ -14,8 +15,9 @@ public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests 
   protected static ObjectMapper objectMapper = new ObjectMapper();
   protected MockMvc mockMvc;
   protected MvcResult mvcResult;
-  @Autowired protected UserRepository userRepository;
+//  @Autowired protected UserRepository userRepository;
   @Autowired private WebApplicationContext webApplicationContext;
+  @Autowired protected UserRepository userRepository = Mockito.mock(UserRepository.class);
 
   @BeforeClass
   protected void setupBeforeClass() {

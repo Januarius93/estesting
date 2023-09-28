@@ -37,7 +37,6 @@ public class PasswordServiceImpl implements PasswordService {
               .getResponseMessage(),
           HttpStatus.NOT_FOUND);
     }
-
     return new ResponseEntity(
         new Message(
                 HttpStatus.OK,
