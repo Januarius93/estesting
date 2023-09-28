@@ -1,5 +1,6 @@
-package com.estesting.gateway.controller;
+package com.estesting.gateway.controller.passwordcontroller;
 
+import static com.estesting.dependencies.commons.Endpoint.PASSWORD_ENDPOINT;
 import static com.estesting.dependencies.commons.Endpoint.PASSWORD_RESET_ENDPOINT;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatResponseContainsErrorCodes;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatStatusCodeIs400;
@@ -9,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.estesting.gateway.AbstractUnitTest;
+import com.estesting.gateway.controller.PasswordController;
 import com.estesting.gateway.dataprovider.UnitTestDataProvider;
 import com.estesting.gateway.form.PasswordResetForm;
 import java.util.List;
@@ -20,20 +22,26 @@ import org.testng.annotations.Test;
 
 @SpringBootTest
 @Import(PasswordController.class)
-public class PasswordControllerTest extends AbstractUnitTest {
+public class PasswordResetTest extends AbstractUnitTest {
   @Test
   public void withValidEmailPasswordResetShouldReturnSuccessWithHttp200() throws Exception {
     PasswordResetForm passwordResetForm = new PasswordResetForm();
     passwordResetForm.setEmail("some@mail.com");
     mockMvc
         .perform(
-            post(PASSWORD_RESET_ENDPOINT)
+            post(PASSWORD_ENDPOINT + PASSWORD_RESET_ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(passwordResetForm.getFormData()))
         .andExpect(status().isOk())
         .andExpect(
             content().string(containsString(passwordResetForm.getFormData() + " user:  RESET")))
         .andReturn();
+  }
+
+  @Test
+  public void withNonExistentEmailPasswordResetShouldReturnErrorsWithHttp400(){
+    PasswordResetForm passwordResetForm = new PasswordResetForm();
+    passwordResetForm.setEmail("some@mail.com");
   }
 
   @SneakyThrows
@@ -47,7 +55,7 @@ public class PasswordControllerTest extends AbstractUnitTest {
     mvcResult =
         mockMvc
             .perform(
-                post(PASSWORD_RESET_ENDPOINT)
+                post(PASSWORD_ENDPOINT + PASSWORD_RESET_ENDPOINT)
                     .content(passwordResetForm.getFormData())
                     .contentType(MediaType.APPLICATION_JSON))
             .andReturn();

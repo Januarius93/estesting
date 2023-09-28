@@ -11,17 +11,13 @@ import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @Validated
 @RequestMapping(PASSWORD_ENDPOINT)
 public class PasswordController {
@@ -30,11 +26,10 @@ public class PasswordController {
 
   @SneakyThrows
   @PostMapping(value = PASSWORD_RESET_ENDPOINT, consumes = "application/json")
-  public @ResponseBody ResponseEntity<Object> resetPassword(
-      @RequestBody @Valid @JsonFormat PasswordResetForm passwordResetForm,
+  public @ResponseBody ResponseEntity<String> resetPassword(
+      @RequestBody @Valid PasswordResetForm passwordResetForm,
       BindingResult bindingResult) {
-    passwordServiceImpl.resetPassword(passwordResetForm);
-    log.info("user: RESET");
-    return new ResponseEntity<>(passwordResetForm.getFormData() + " user:  RESET", HttpStatus.OK);
+    log.info("user: "+ passwordResetForm.getEmail()+" RESET");
+    return passwordServiceImpl.resetPassword(passwordResetForm);
   }
 }
