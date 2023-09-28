@@ -10,7 +10,6 @@ import lombok.Setter;
 import org.json.JSONObject;
 
 @Getter
-// @AllArgsConstructor
 public class PasswordResetForm implements Form {
   @NotBlank(message = EMAIL_CAN_NOT_BE_BLANK)
   @NotNull(message = EMAIL_CAN_NOT_BE_NULL)
