@@ -7,7 +7,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import com.estesting.gateway.AbstractUnitTest;
 import com.estesting.gateway.PasswordEncoderImpl;
-import com.estesting.gateway.controller.signin.SignInController;
 import com.estesting.gateway.form.SignInForm;
 import com.estesting.gateway.form.SignUpForm;
 import com.estesting.gateway.model.User;

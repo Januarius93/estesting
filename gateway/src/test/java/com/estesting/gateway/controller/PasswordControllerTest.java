@@ -19,8 +19,8 @@ import org.springframework.http.MediaType;
 import org.testng.annotations.Test;
 
 @SpringBootTest
-@Import(PasswordResetController.class)
-public class PasswordResetControllerTest extends AbstractUnitTest {
+@Import(PasswordController.class)
+public class PasswordControllerTest extends AbstractUnitTest {
   @Test
   public void withValidEmailPasswordResetShouldReturnSuccessWithHttp200() throws Exception {
     PasswordResetForm passwordResetForm = new PasswordResetForm();

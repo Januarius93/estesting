@@ -1,7 +1,6 @@
 package com.estesting.gateway.model;
 
 import com.estesting.gateway.form.Form;
-import com.estesting.gateway.form.SignUpForm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;

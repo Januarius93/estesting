@@ -28,15 +28,14 @@ public class SignUpControllerTest extends AbstractUnitTest {
   @SneakyThrows
   public void withValidSignUpDataSignupShouldReturnSuccessAndHttp200() {
     SignUpForm validSignupForm = buildValidSignUpForm();
-        mockMvc
-            .perform(
-                put(SIGN_UP_ENDPOINT)
-                    .content(validSignupForm.getFormData())
-                    .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(
-                content().json("{\"code\":\"OK\",\"message\":[\"User: someusername created\"]}"))
-            .andReturn();
+    mockMvc
+        .perform(
+            put(SIGN_UP_ENDPOINT)
+                .content(validSignupForm.getFormData())
+                .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().json("{\"code\":\"OK\",\"message\":[\"User: someusername created\"]}"))
+        .andReturn();
   }
 
   @SneakyThrows

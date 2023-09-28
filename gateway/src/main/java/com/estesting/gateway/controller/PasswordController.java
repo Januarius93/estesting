@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @Validated
-public class PasswordResetController {
-  private static final Logger log = LoggerFactory.getLogger(PasswordResetController.class);
+public class PasswordController {
+  private static final Logger log = LoggerFactory.getLogger(PasswordController.class);
   @Autowired private PasswordResetService passwordResetService;
 
   @SneakyThrows
