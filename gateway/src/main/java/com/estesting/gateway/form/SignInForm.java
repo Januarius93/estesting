@@ -36,6 +36,7 @@ public class SignInForm implements Form {
       max = 200,
       message =
           MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MAXIMUM_NUMBER_OF_CHARACTERS_FOR_PASSWORD)
+  @Getter
   private String password;
 
   @Override

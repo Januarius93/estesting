@@ -24,6 +24,7 @@ public class SignUpController {
   @PutMapping(value = SIGN_UP_ENDPOINT, consumes = "application/json")
   public @ResponseBody ResponseEntity<String> signUp(
       @RequestBody @Valid SignUpForm signUpForm, BindingResult bindingResult) {
+    log.info("Sign up attempt");
     return signUpService.createUser(signUpForm);
   }
 }

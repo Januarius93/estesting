@@ -7,6 +7,7 @@ import static com.estesting.dependencies.commons.Regex.EMAIL_REGEX;
 import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import org.json.JSONObject;
 
 @Builder
@@ -49,6 +50,7 @@ public class SignUpForm implements Form {
       message =
           MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MAXIMUM_NUMBER_OF_CHARACTERS_FOR_PASSWORD)
   @Getter
+  @Setter
   private String password;
 
   @Getter
