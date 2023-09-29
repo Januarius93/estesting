@@ -23,13 +23,12 @@ import org.springframework.web.bind.annotation.*;
 public class PasswordController {
   private static final Logger log = LoggerFactory.getLogger(PasswordController.class);
   @Autowired private PasswordServiceImpl passwordServiceImpl;
-
   @SneakyThrows
   @PostMapping(value = PASSWORD_RESET_ENDPOINT, consumes = "application/json")
   public @ResponseBody ResponseEntity<String> resetPassword(
       @RequestBody @Valid PasswordResetForm passwordResetForm,
       BindingResult bindingResult) {
-    log.info("user: "+ passwordResetForm.getEmail()+" RESET");
+    log.info("User: "+ passwordResetForm.getEmail()+" password reset");
     return passwordServiceImpl.resetPassword(passwordResetForm);
   }
 }
