@@ -29,4 +29,12 @@ public class ErrorCodes {
   public static final String MINIMUM_NUMBER_OF_CHARACTERS_3 = " is 3";
   public static final String MAXIMUM_NUMBER_OF_CHARACTERS_50 = " is 50";
   public static final String MAXIMUM_NUMBER_OF_CHARACTERS_FOR_PASSWORD = " is 200";
+
+  public static class Password {
+    public static final String PASSWORD_MUST_CONTAINS_0_9 = "Password must contains at least one number";
+    public static final String PASSWORD_MUST_CONTAINS_a_z = "Password must contains at least one lowercase character";
+    public static final String PASSWORD_MUST_CONTAINS_A_Z = "Password must contains at least one uppercase character";
+    public static final String PASSWORD_MUST_CONTAINS_SPECIAL_CHARS = "Password must contain one special character !@#$%^&*";
+    public static final String PASSWORD_MUST_CONTAINS_NO_WHITESPACE = "Password must contain no whitespace";
+  }
 }

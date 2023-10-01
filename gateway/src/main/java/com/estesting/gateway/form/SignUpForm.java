@@ -1,8 +1,10 @@
 package com.estesting.gateway.form;
 
 import static com.estesting.dependencies.commons.ErrorCodes.*;
+import static com.estesting.dependencies.commons.ErrorCodes.Password.*;
 import static com.estesting.dependencies.commons.FormRequestAttributes.*;
 import static com.estesting.dependencies.commons.Regex.EMAIL_REGEX;
+import static com.estesting.dependencies.commons.Regex.Password.*;
 
 import jakarta.validation.constraints.*;
 import lombok.Builder;
@@ -39,6 +41,8 @@ public class SignUpForm implements Form {
   @Getter
   private String username;
 
+  @Getter
+  @Setter
   @NotBlank(message = PASSWORD_CAN_NOT_BE_BLANK)
   @NotNull(message = PASSWORD_CAN_NOT_BE_NULL)
   @NotEmpty(message = PASSWORD_CAN_NOT_BE_EMPTY)
@@ -49,8 +53,15 @@ public class SignUpForm implements Form {
       max = 200,
       message =
           MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MAXIMUM_NUMBER_OF_CHARACTERS_FOR_PASSWORD)
-  @Getter
-  @Setter
+  @Pattern.List({
+    @Pattern(regexp = MUST_CONTAINS_0_9, message = PASSWORD_MUST_CONTAINS_0_9),
+    @Pattern(regexp = MUST_CONTAINS_a_z, message = PASSWORD_MUST_CONTAINS_a_z),
+    @Pattern(regexp = MUST_CONTAINS_A_Z, message = PASSWORD_MUST_CONTAINS_A_Z),
+    @Pattern(
+        regexp = MUST_CONTAINS_SPECIAL_CHARS,
+        message = PASSWORD_MUST_CONTAINS_SPECIAL_CHARS),
+    @Pattern(regexp = MUST_CONTAINS_NO_WHITESPACE, message = PASSWORD_MUST_CONTAINS_NO_WHITESPACE)
+  })
   private String password;
 
   @Getter

@@ -8,7 +8,7 @@ public class SignUpFormTestData {
     return SignUpForm.builder()
         .email("somepropermail@mail.com")
         .username("someusername")
-        .password("someusernamepwd")
+        .password("1q2w!Q@W2w1q@W!Q")
         .age(18)
         .build();
   }
@@ -26,7 +26,7 @@ public class SignUpFormTestData {
     return SignUpForm.builder()
         .email("a.")
         .username("someusername")
-        .password("someusernamepwd")
+        .password("qAwe7rty!uiop")
         .age(21)
         .build();
   }
@@ -35,7 +35,7 @@ public class SignUpFormTestData {
     return SignUpForm.builder()
         .email("")
         .username("someusername")
-        .password("someusernamepwd")
+        .password("qAwe7rty!uiop")
         .age(18)
         .build();
   }
@@ -44,7 +44,7 @@ public class SignUpFormTestData {
     return SignUpForm.builder()
         .email("somepropermail@mail.com")
         .username("")
-        .password("somepwdsomepwd")
+        .password("qAwe7rty!uiop")
         .age(18)
         .build();
   }
@@ -62,7 +62,7 @@ public class SignUpFormTestData {
     return SignUpForm.builder()
         .email("somepropermail@mail.com")
         .username("someusername")
-        .password("someusernamepwd")
+        .password("qAwe7rty!uiop")
         .age(17)
         .build();
   }
@@ -71,7 +71,7 @@ public class SignUpFormTestData {
     return SignUpForm.builder()
         .email("somepropermail@mail.com")
         .username("someusername")
-        .password("someusernamepwd")
+        .password("qAwe7rty!uiop")
         .age(101)
         .build();
   }
@@ -91,8 +91,8 @@ public class SignUpFormTestData {
   public static SignUpForm buildAllFieldsSmallerInvalidSizeDataSignUpForm() {
     return SignUpForm.builder()
         .email("a@")
-        .username("dowp4odpl")
-        .password("dowlfospl")
+        .username("dow")
+        .password("o1q2w!Q@W")
         .age(17)
         .build();
   }
@@ -107,12 +107,9 @@ public class SignUpFormTestData {
                 + "                + \"nihywrklocubigvoidniczwzkcxbelnwdehytzujmflwfjccxsh\\n\"\n"
                 + "                + \"agfwvmxbecvhjvrzlijnmorxkzbqhghbtxwfgkagijhsauyqxaj\\n\"\n"
                 + "                + \"pezfpohldpulgaueppxdfligucpgplwufurvgazoxtuwelbukch\"")
-        .password(
-            " \"mwbiuqswqwzkaakqzdwayxihjbsquemoqdrezabltnrkrngnptywpspobmhfcytycvukhihgwlhsudfweusiuicvfmodanvsjctbootivoxrrckvznowmkumkcpcmnkkpjugdqfjkpklazumblhfmamnzqlrlaovtejgfeewgswpvoogodppguqffbnogvnfscmhdnomz\\n\"\n"
-                + "                + \"skmzhlctbxzjrfeiwgjwvfveyyzlahlrwwhvugdbfqxlwqqkbkznamsmdunwgokzlitdwkbkijeysefjioteirplkfpymsuduthnlwhfpiwrxpoikvitjgmzyhxjastpauwhiwyfzptlqxkknmlewthhgrzliqkguvwgdmvuhzkzwhparpjesaurcgdpouumqtbljzzeg\\n\"\n"
-                + "                + \"evfdcdtgmbzdzgyhcriipopucrfgupiojljfuhvurgpabuycbxnkclvhyaopdqrzneqeskzpjmhfviivwuqhecfsvgvchfpkacoelmlkxafzpwyttxxzlblfepzlyfevqqatqrszzyrhmtgdfygezdwowikiqlawcmlwkkrxadmtmqwyazsftdxztvezzqprgzcqlhcby\\n\"\n"
-                + "                + \"fajgkilqxgmeumrrmkkeraiwkxzkltidujqqwjjfatwlhjrcsoftinbxnolwydhkiycsosemictxnmdmwtjadcfsskxqfkzshsjohpthvclptkquwuymicjdwniqatczpxztzhghtzhtzseactouzonubgcipbyvtgrpxcbgvpakbpgptkxqkirfkcdelhfesocouxocw\\n\"\n"
-                + "                + \"jabywkkgvoawtwzzctmrlqvxcacbdlpunouluypeegbexdrrhqyzlxhsfrechlekptyzpqhwpljfqphboidhbwkefnwwlkejmlcmahzbmzmrdejzmzqozvzooswmjqbrrbielixjxswbtjuecicivcvtdcnpgcadilgecozrrueqnwyxexndeehgijpkgktwzvbcsrvvc\"")
+        .password("1q2w1qQAWS" +
+                "!@#qaynumgjnnazkuhempmwlwqpmbonaasslpuycphpijnbmeybfsefsefsefsefsefsefseziolruzrugznekcafafrmgnlkiwxuwwuogsgbtqclkpjxmebnyhksawgpmpwpzecsvqopjansawopfhiqlazrobgtqgabacpxrnkbxzemfdhfxnlxbcyobyfxcgatlultqlwmizwc")
+
         .age(101)
         .build();
   }
