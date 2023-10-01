@@ -13,13 +13,6 @@ import static com.estesting.dependencies.commons.Regex.Password.*;
 public class PasswordChangeForm {
     @Getter
     @Setter
-    @NotBlank(message = OLD_PASSWORD_CAN_NOT_BE_BLANK)
-    @NotNull(message = OLD_PASSWORD_CAN_NOT_BE_NULL)
-    @NotEmpty(message = OLD_PASSWORD_CAN_NOT_BE_EMPTY)
-    private String oldPassword;
-
-    @Getter
-    @Setter
     @NotBlank(message = NEW_PASSWORD_CAN_NOT_BE_BLANK)
     @NotNull(message = NEW_PASSWORD_CAN_NOT_BE_NULL)
     @NotEmpty(message = NEW_PASSWORD_CAN_NOT_BE_EMPTY)
