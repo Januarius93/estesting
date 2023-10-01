@@ -1,6 +1,7 @@
 package com.estesting.gateway.dataprovider;
 
 import static com.estesting.dependencies.commons.ErrorCodes.*;
+import static com.estesting.dependencies.commons.ErrorCodes.Password.*;
 import static com.estesting.dependencies.commons.FormRequestAttributes.*;
 import static com.estesting.gateway.SignInFormTestData.*;
 import static com.estesting.gateway.SignUpFormTestData.*;
@@ -110,7 +111,12 @@ public class UnitTestDataProvider {
         List.of(
             PASSWORD_CAN_NOT_BE_EMPTY,
             PASSWORD_CAN_NOT_BE_BLANK,
-            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            PASSWORD_MUST_CONTAINS_NO_WHITESPACE,
+            PASSWORD_MUST_CONTAINS_a_z,
+            PASSWORD_MUST_CONTAINS_A_Z,
+            PASSWORD_MUST_CONTAINS_0_9,
+            PASSWORD_MUST_CONTAINS_SPECIAL_CHARS)
       },
       {buildAgeBelow18SignUpForm(), List.of(AGE_CAN_NOT_BE_SMALLER_THAN_18)},
       {buildAgeAbove100SignUpForm(), List.of(AGE_CAN_NOT_BE_GREATER_THAN_100)},
@@ -127,7 +133,12 @@ public class UnitTestDataProvider {
             AGE_CAN_NOT_BE_GREATER_THAN_100,
             MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + USERNAME + MINIMUM_NUMBER_OF_CHARACTERS_3,
             MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + EMAIL + MINIMUM_NUMBER_OF_CHARACTERS_3,
-            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10,
+            PASSWORD_MUST_CONTAINS_NO_WHITESPACE,
+            PASSWORD_MUST_CONTAINS_a_z,
+            PASSWORD_MUST_CONTAINS_A_Z,
+            PASSWORD_MUST_CONTAINS_0_9,
+            PASSWORD_MUST_CONTAINS_SPECIAL_CHARS)
       },
       {
         buildAllNullFieldsSignUpForm(),
@@ -160,11 +171,12 @@ public class UnitTestDataProvider {
       {
         buildAllFieldsSmallerInvalidSizeDataSignUpForm(),
         List.of(
-            EMAIL_MUST_BE_WELL_FORMATED,
-            THIS_IS_NOT_EMAIL,
-            AGE_CAN_NOT_BE_SMALLER_THAN_18,
             MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10,
-            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + EMAIL + MINIMUM_NUMBER_OF_CHARACTERS_3)
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + USERNAME + MINIMUM_NUMBER_OF_CHARACTERS_3,
+            MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + EMAIL + MINIMUM_NUMBER_OF_CHARACTERS_3,
+            AGE_CAN_NOT_BE_SMALLER_THAN_18,
+            EMAIL_MUST_BE_WELL_FORMATED,
+            THIS_IS_NOT_EMAIL)
       },
       {
         buildAllFieldsGreaterInvalidSizeDataSignUpForm(),
