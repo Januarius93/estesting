@@ -1,6 +1,7 @@
 package com.estesting.gateway.service;
 
 import com.estesting.gateway.exceptions.EmailDoesNotExist;
+import com.estesting.gateway.form.PasswordChangeForm;
 import com.estesting.gateway.form.PasswordResetForm;
 import com.estesting.gateway.model.Message;
 import com.estesting.gateway.model.User;
@@ -43,5 +44,10 @@ public class PasswordServiceImpl implements PasswordService {
                 "Password reset instructions was sent to: " + passwordResetForm.getEmail())
             .getResponseMessage(),
         HttpStatus.OK);
+  }
+
+  @Override
+  public ResponseEntity<String> changePassword(PasswordChangeForm passwordChangeForm) {
+    return null;
   }
 }
