@@ -13,16 +13,16 @@ import static com.estesting.dependencies.commons.Regex.Password.*;
 public class PasswordChangeForm {
     @Getter
     @Setter
-    @NotBlank(message = PASSWORD_CAN_NOT_BE_BLANK)
-    @NotNull(message = PASSWORD_CAN_NOT_BE_NULL)
-    @NotEmpty(message = PASSWORD_CAN_NOT_BE_EMPTY)
+    @NotBlank(message = OLD_PASSWORD_CAN_NOT_BE_BLANK)
+    @NotNull(message = OLD_PASSWORD_CAN_NOT_BE_NULL)
+    @NotEmpty(message = OLD_PASSWORD_CAN_NOT_BE_EMPTY)
     private String oldPassword;
 
     @Getter
     @Setter
-    @NotBlank(message = PASSWORD_CAN_NOT_BE_BLANK)
-    @NotNull(message = PASSWORD_CAN_NOT_BE_NULL)
-    @NotEmpty(message = PASSWORD_CAN_NOT_BE_EMPTY)
+    @NotBlank(message = NEW_PASSWORD_CAN_NOT_BE_BLANK)
+    @NotNull(message = NEW_PASSWORD_CAN_NOT_BE_NULL)
+    @NotEmpty(message = NEW_PASSWORD_CAN_NOT_BE_EMPTY)
     @Size(
             min = 10,
             message = MINIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MINIMUM_NUMBER_OF_CHARACTERS_10)
