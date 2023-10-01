@@ -16,11 +16,6 @@ public class ErrorCodes {
   public static final String PASSWORD_CAN_NOT_BE_BLANK = "Password can not be blank";
   public static final String PASSWORD_CAN_NOT_BE_NULL = "Password can not be null";
   public static final String PASSWORD_CAN_NOT_BE_EMPTY = "Password can not be empty";
-
-  public static final String OLD_PASSWORD_CAN_NOT_BE_BLANK = "Old password can not be blank";
-  public static final String OLD_PASSWORD_CAN_NOT_BE_NULL = "Old password can not be null";
-  public static final String OLD_PASSWORD_CAN_NOT_BE_EMPTY = "Old password can not be empty";
-
   public static final String NEW_PASSWORD_CAN_NOT_BE_BLANK = "New password can not be blank";
   public static final String NEW_PASSWORD_CAN_NOT_BE_NULL = "New password can not be null";
   public static final String NEW_PASSWORD_CAN_NOT_BE_EMPTY = "New password can not be empty";
