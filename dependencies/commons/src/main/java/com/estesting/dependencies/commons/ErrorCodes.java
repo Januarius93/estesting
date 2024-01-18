@@ -16,6 +16,9 @@ public class ErrorCodes {
   public static final String PASSWORD_CAN_NOT_BE_BLANK = "Password can not be blank";
   public static final String PASSWORD_CAN_NOT_BE_NULL = "Password can not be null";
   public static final String PASSWORD_CAN_NOT_BE_EMPTY = "Password can not be empty";
+  public static final String NEW_PASSWORD_CAN_NOT_BE_BLANK = "New password can not be blank";
+  public static final String NEW_PASSWORD_CAN_NOT_BE_NULL = "New password can not be null";
+  public static final String NEW_PASSWORD_CAN_NOT_BE_EMPTY = "New password can not be empty";
   public static final String PASSWORD_IS_MANDATORY = "Password is mandatory";
   public static final String AGE_CAN_NOT_BE_NULL = "Age can not be null";
   public static final String AGE_CAN_NOT_BE_NEGATIVE = "Age can not be negative";
