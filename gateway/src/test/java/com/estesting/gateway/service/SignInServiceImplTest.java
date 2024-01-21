@@ -1,8 +1,8 @@
 package com.estesting.gateway.service;
 
-import static com.estesting.gateway.SignInFormTestData.buildValidSignInForm;
-import static com.estesting.gateway.SignUpFormTestData.buildOtherValidSignUpForm;
-import static com.estesting.gateway.SignUpFormTestData.buildValidSignUpForm;
+import static com.estesting.gateway.data.SignInFormTestData.buildValidSignInForm;
+import static com.estesting.gateway.data.SignUpFormTestData.buildOtherValidSignUpForm;
+import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpForm;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import com.estesting.gateway.AbstractUnitTest;

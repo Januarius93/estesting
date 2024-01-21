@@ -1,4 +1,4 @@
-package com.estesting.gateway;
+package com.estesting.gateway.data;
 
 import com.estesting.gateway.form.SignInForm;
 

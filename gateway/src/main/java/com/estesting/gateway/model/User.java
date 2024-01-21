@@ -32,6 +32,10 @@ public class User {
   @Getter
   private String password;
 
+  @Column(name = "OLD_PASSWORD", length = 200, nullable = true)
+  @Getter
+  private String oldPassword;
+
   @Column(name = "AGE", length = 3, nullable = false)
   private Integer age;
 

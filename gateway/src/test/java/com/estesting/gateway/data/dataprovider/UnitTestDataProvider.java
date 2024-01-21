@@ -1,11 +1,11 @@
-package com.estesting.gateway.dataprovider;
+package com.estesting.gateway.data.dataprovider;
 
 import static com.estesting.dependencies.commons.ErrorCodes.*;
 import static com.estesting.dependencies.commons.ErrorCodes.Password.*;
 import static com.estesting.dependencies.commons.FormRequestAttributes.*;
-import static com.estesting.gateway.SignInFormTestData.*;
-import static com.estesting.gateway.SignUpFormTestData.*;
-import static com.estesting.gateway.SignUpFormTestData.buildAllFieldsSmallerInvalidSizeDataSignUpForm;
+import static com.estesting.gateway.data.SignInFormTestData.*;
+import static com.estesting.gateway.data.SignUpFormTestData.*;
+import static com.estesting.gateway.data.SignUpFormTestData.buildAllFieldsSmallerInvalidSizeDataSignUpForm;
 
 import java.util.List;
 import org.testng.annotations.DataProvider;

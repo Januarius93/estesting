@@ -1,7 +1,7 @@
 package com.estesting.gateway.controller;
 
 import static com.estesting.dependencies.commons.Endpoint.SIGN_IN_ENDPOINT;
-import static com.estesting.gateway.SignUpFormTestData.buildValidSignUpForm;
+import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpForm;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatResponseContainsErrorCodes;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatStatusCodeIs400;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.estesting.gateway.AbstractUnitTest;
 import com.estesting.gateway.PasswordEncoderImpl;
 import com.estesting.gateway.controller.signin.SignInController;
-import com.estesting.gateway.dataprovider.UnitTestDataProvider;
+import com.estesting.gateway.data.dataprovider.UnitTestDataProvider;
 import com.estesting.gateway.form.SignInForm;
 import com.estesting.gateway.form.SignUpForm;
 import com.estesting.gateway.model.User;
@@ -52,7 +52,7 @@ public class SignInControllerTest extends AbstractUnitTest {
     mockMvc
         .perform(
             MockMvcRequestBuilders.post(SIGN_IN_ENDPOINT)
-                .content(validSignInForm.getFormData())
+                .content(validSignInForm.getFormData().toString())
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(
@@ -71,7 +71,7 @@ public class SignInControllerTest extends AbstractUnitTest {
         mockMvc
             .perform(
                 post(SIGN_IN_ENDPOINT)
-                    .content(signInForm.getFormData())
+                    .content(String.valueOf(signInForm.getFormData()))
                     .contentType(MediaType.APPLICATION_JSON))
             .andReturn();
     assertThatStatusCodeIs400(mvcResult);

@@ -1,6 +1,6 @@
 package com.estesting.gateway.repository;
 
-import static com.estesting.gateway.SignUpFormTestData.buildValidSignUpForm;
+import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpForm;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;

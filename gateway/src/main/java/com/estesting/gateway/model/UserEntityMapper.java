@@ -10,12 +10,12 @@ import lombok.SneakyThrows;
 public class UserEntityMapper {
   @Setter private Form userForm;
 
-  public UserEntityMapper(Form signUpForm) {
-    this.userForm = signUpForm;
+  public UserEntityMapper(Form userForm) {
+    this.userForm = userForm;
   }
 
   @SneakyThrows
   public User generateUser() {
-    return new ObjectMapper().readValue(userForm.getFormData(), User.class);
+    return new ObjectMapper().readValue(this.userForm.getFormData().toString(), User.class);
   }
 }

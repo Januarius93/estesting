@@ -1,7 +1,7 @@
 package com.estesting.gateway.controller;
 
 import static com.estesting.dependencies.commons.Endpoint.SIGN_UP_ENDPOINT;
-import static com.estesting.gateway.SignUpFormTestData.buildValidSignUpForm;
+import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpForm;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatResponseContainsErrorCodes;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatStatusCodeIs400;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.estesting.gateway.AbstractUnitTest;
 import com.estesting.gateway.controller.signup.SignUpController;
-import com.estesting.gateway.dataprovider.UnitTestDataProvider;
+import com.estesting.gateway.data.dataprovider.UnitTestDataProvider;
 import com.estesting.gateway.form.SignUpForm;
 import java.util.List;
 import lombok.SneakyThrows;
@@ -31,7 +31,7 @@ public class SignUpControllerTest extends AbstractUnitTest {
     mockMvc
         .perform(
             put(SIGN_UP_ENDPOINT)
-                .content(validSignupForm.getFormData())
+                .content(validSignupForm.getFormData().toString())
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().json("{\"code\":\"OK\",\"message\":[\"User: someusername created\"]}"))
@@ -46,7 +46,7 @@ public class SignUpControllerTest extends AbstractUnitTest {
         mockMvc
             .perform(
                 put(SIGN_UP_ENDPOINT)
-                    .content(signUpFormData.getFormData())
+                    .content(signUpFormData.getFormData().toString())
                     .contentType(MediaType.APPLICATION_JSON))
             .andReturn();
     assertThatStatusCodeIs400(mvcResult);

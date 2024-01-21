@@ -1,10 +1,12 @@
 package com.estesting.gateway.service;
 
-import static com.estesting.gateway.SignUpFormTestData.buildValidSignUpForm;
+import static com.estesting.gateway.data.PasswordChangeFormTestData.buildValidPasswordChangeForm;
+import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpFormWithPassword;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import com.estesting.gateway.AbstractUnitTest;
 import com.estesting.gateway.PasswordEncoderImpl;
+import com.estesting.gateway.form.PasswordChangeForm;
 import com.estesting.gateway.form.PasswordResetForm;
 import com.estesting.gateway.form.SignUpForm;
 import com.estesting.gateway.model.User;
@@ -20,36 +22,76 @@ import org.testng.annotations.Test;
 @SpringBootTest
 @Import(PasswordServiceImpl.class)
 public class PasswordServiceTest extends AbstractUnitTest {
-  @Autowired private PasswordServiceImpl passwordService = Mockito.mock(PasswordServiceImpl.class);
-  @Test
-  public void withNonExistentEmailUserPasswordResetShouldReturnsEmailNotFound() {
-    String someMail = "somemail@comn.pl";
-    PasswordResetForm passwordResetForm = new PasswordResetForm();
-    passwordResetForm.setEmail("somemail@comn.pl");
-    ResponseEntity<String> paswordResetResponseEntity =
-        passwordService.resetPassword(passwordResetForm);
-    assertThat(
-        "Email not found in db",
-        paswordResetResponseEntity.toString(),
-        Matchers.containsString("User with given mail: " + someMail + " was not found"));
-  }
+    @Autowired
+    private PasswordServiceImpl passwordService = Mockito.mock(PasswordServiceImpl.class);
+    private User user;
+    private static final String TEST_PASSWORD = "1q2w!Q@W2w1q@W!Q";
+    private static final String INVALID_TEST_PASSWORD = "12w!1q@W!QQ@Wq2w";
 
-  @Test
-  public void withExistingEmailUserPasswordResetShouldReturnsProceedWithPasswordReset() {
-    SignUpForm validSignUpForm = buildValidSignUpForm();
-    validSignUpForm.setPassword(new PasswordEncoderImpl().encode(validSignUpForm.getPassword()));
-    User user = new UserEntityMapper(validSignUpForm).generateUser();
-    userRepository.save(user);
+    @Test
+    public void withNonExistentEmailUserPasswordResetShouldReturnsEmailNotFound() {
+        String someMail = "somemail@comn.pl";
+        PasswordResetForm passwordResetForm = new PasswordResetForm();
+        passwordResetForm.setEmail("somemail@comn.pl");
+        ResponseEntity<String> paswordResetResponseEntity =
+                passwordService.resetPassword(passwordResetForm);
+        assertThat(
+                "Email not found in db",
+                paswordResetResponseEntity.toString(),
+                Matchers.containsString("User with given mail: " + someMail + " was not found"));
+    }
 
-    PasswordResetForm passwordResetForm = new PasswordResetForm();
-    passwordResetForm.setEmail(user.getEmail());
+    @Test
+    public void withExistingEmailUserPasswordResetShouldReturnsProceedWithPasswordReset() {
+        generateUser();
+        PasswordResetForm passwordResetForm = new PasswordResetForm();
+        passwordResetForm.setEmail(user.getEmail());
 
-    ResponseEntity<String> paswordResetResponseEntity =
-        passwordService.resetPassword(passwordResetForm);
-    assertThat(
-        "Email found in db",
-        paswordResetResponseEntity.toString(),
-        Matchers.containsString(
-            "Password reset instructions was sent to: " + passwordResetForm.getEmail()));
-  }
+        ResponseEntity<String> passwordResetResponseEntity =
+                passwordService.resetPassword(passwordResetForm);
+        assertThat(
+                "Email found in db",
+                passwordResetResponseEntity.toString(),
+                Matchers.containsString(
+                        "Password reset instructions was sent to: " + passwordResetForm.getEmail()));
+    }
+
+    @Test
+    public void withProperDataUserIsAbleToChangePassword() {
+        generateUser();
+        PasswordChangeForm passwordChangeForm = buildValidPasswordChangeForm(user.getEmail(), TEST_PASSWORD);
+
+        ResponseEntity<String> passwordChangeResponseEntity =
+                passwordService.changePassword(passwordChangeForm);
+
+        assertThat(
+                "Password changed successfully",
+                passwordChangeResponseEntity.toString(),
+                Matchers.containsString(
+                        "Password changed for: " + user.getEmail()));
+
+    }
+
+    @Test
+    public void withInProperPasswordDataUserIsNotAbleToChangePassword() {
+        generateUser();
+        PasswordChangeForm passwordChangeForm = buildValidPasswordChangeForm(user.getEmail(), INVALID_TEST_PASSWORD);
+
+        ResponseEntity<String> passwordChangeResponseEntity =
+                passwordService.changePassword(passwordChangeForm);
+
+        assertThat(
+                "Password change failed",
+                passwordChangeResponseEntity.toString(),
+                Matchers.containsString(
+                        "Old password for:  " + user.getEmail() + " is incorrect"));
+
+    }
+
+    private void generateUser() {
+        SignUpForm validSignUpForm = buildValidSignUpFormWithPassword(TEST_PASSWORD);
+        validSignUpForm.setPassword(new PasswordEncoderImpl().encode(validSignUpForm.getPassword()));
+        user = new UserEntityMapper(validSignUpForm).generateUser();
+        userRepository.save(user);
+    }
 }

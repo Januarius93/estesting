@@ -20,7 +20,7 @@ public class PasswordResetForm implements Form {
   private String email;
 
   @Override
-  public String getFormData() {
-    return new JSONObject().put(EMAIL, this.email).toString();
+  public JSONObject getFormData() {
+    return new JSONObject().put(EMAIL, this.email);
   }
 }
