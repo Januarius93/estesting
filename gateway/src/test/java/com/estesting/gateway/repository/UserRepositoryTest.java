@@ -16,8 +16,6 @@ import org.testng.annotations.Test;
 
 @SpringBootTest
 public class UserRepositoryTest extends AbstractUnitTest {
-  @Autowired private UserRepository userRepository = Mockito.mock(UserRepository.class);
-
   @Test
   public void withValidSignUpFormUserShouldBeCreatedInRepository() {
     SignUpForm validSignUpForm = buildValidSignUpForm();

@@ -53,7 +53,7 @@ public class PasswordServiceImpl implements PasswordService {
         } catch (Exception e) {
             userNotFound(user);
         }
-        log.error("User " + user.getEmail() + " found");
+        log.info("User " + user.getEmail() + " found");
         String oldPassword = user.getOldPassword();
         User userToUpdate = userRepository.findByEmail(user.getEmail()).stream().findFirst().get();
 
@@ -62,17 +62,17 @@ public class PasswordServiceImpl implements PasswordService {
                 throw new IncorrectOldPasswordException("Old password for:  " + user.getEmail() + " is incorrect");
             }
         } catch (IncorrectOldPasswordException e) {
-            log.error("Old password is incorrect!");
+            log.error("Old password for:  " + user.getEmail() + " is incorrect");
             return new ResponseEntity(
                     new Message(
                             HttpStatus.INTERNAL_SERVER_ERROR,
                             "Old password for:  " + user.getEmail() + " is incorrect")
                             .getResponseMessage(),
-                    HttpStatus.NOT_FOUND);
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
         userToUpdate.setPassword(new PasswordEncoderImpl().encode(passwordChangeForm.getFormData().get(PASSWORD).toString()));
         userRepository.save(userToUpdate);
-
+        log.info("User " + user.getEmail() + " password changed");
         return new ResponseEntity(
                 new Message(
                         HttpStatus.OK,

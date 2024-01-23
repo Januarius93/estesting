@@ -24,9 +24,6 @@ import org.testng.annotations.Test;
 public class PasswordServiceTest extends AbstractUnitTest {
     @Autowired
     private PasswordServiceImpl passwordService = Mockito.mock(PasswordServiceImpl.class);
-    private User user;
-    private static final String TEST_PASSWORD = "1q2w!Q@W2w1q@W!Q";
-    private static final String INVALID_TEST_PASSWORD = "12w!1q@W!QQ@Wq2w";
 
     @Test
     public void withNonExistentEmailUserPasswordResetShouldReturnsEmailNotFound() {
@@ -43,7 +40,7 @@ public class PasswordServiceTest extends AbstractUnitTest {
 
     @Test
     public void withExistingEmailUserPasswordResetShouldReturnsProceedWithPasswordReset() {
-        generateUser();
+        User user = generateUser();
         PasswordResetForm passwordResetForm = new PasswordResetForm();
         passwordResetForm.setEmail(user.getEmail());
 
@@ -58,7 +55,8 @@ public class PasswordServiceTest extends AbstractUnitTest {
 
     @Test
     public void withProperDataUserIsAbleToChangePassword() {
-        generateUser();
+        String TEST_PASSWORD = "1q2w!Q@W2w1q@W!Q";
+        User user = generateUser(TEST_PASSWORD);
         PasswordChangeForm passwordChangeForm = buildValidPasswordChangeForm(user.getEmail(), TEST_PASSWORD);
 
         ResponseEntity<String> passwordChangeResponseEntity =
@@ -74,7 +72,9 @@ public class PasswordServiceTest extends AbstractUnitTest {
 
     @Test
     public void withInProperPasswordDataUserIsNotAbleToChangePassword() {
-        generateUser();
+        String TEST_PASSWORD = "1q2w!Q@W2w1q@W!Q";
+        String INVALID_TEST_PASSWORD = "12w!1q@W!QQ@Wq2w";
+        User user = generateUser(TEST_PASSWORD);
         PasswordChangeForm passwordChangeForm = buildValidPasswordChangeForm(user.getEmail(), INVALID_TEST_PASSWORD);
 
         ResponseEntity<String> passwordChangeResponseEntity =
@@ -86,12 +86,5 @@ public class PasswordServiceTest extends AbstractUnitTest {
                 Matchers.containsString(
                         "Old password for:  " + user.getEmail() + " is incorrect"));
 
-    }
-
-    private void generateUser() {
-        SignUpForm validSignUpForm = buildValidSignUpFormWithPassword(TEST_PASSWORD);
-        validSignUpForm.setPassword(new PasswordEncoderImpl().encode(validSignUpForm.getPassword()));
-        user = new UserEntityMapper(validSignUpForm).generateUser();
-        userRepository.save(user);
     }
 }
