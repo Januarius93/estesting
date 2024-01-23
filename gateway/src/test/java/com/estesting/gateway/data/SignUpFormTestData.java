@@ -1,9 +1,20 @@
-package com.estesting.gateway;
+package com.estesting.gateway.data;
 
 import com.estesting.gateway.form.SignUpForm;
 
+import static com.estesting.gateway.data.DataRandomizer.generateUserEmailWithSoftRandom;
+import static com.estesting.gateway.data.DataRandomizer.generateUserNameWithSoftRandom;
+
 public class SignUpFormTestData {
 
+  public static SignUpForm buildValidSignUpFormWithPassword(String password) {
+    return SignUpForm.builder()
+            .email(generateUserEmailWithSoftRandom())
+            .username(generateUserNameWithSoftRandom())
+            .password(password)
+            .age(18)
+            .build();
+  }
   public static SignUpForm buildValidSignUpForm() {
     return SignUpForm.builder()
         .email("somepropermail@mail.com")

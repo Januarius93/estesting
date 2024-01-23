@@ -72,12 +72,11 @@ public class SignUpForm implements Form {
   private Integer age;
 
   @Override
-  public String getFormData() {
+  public JSONObject getFormData() {
     return new JSONObject()
         .put(EMAIL, this.email)
         .put(USERNAME, this.username)
         .put(PASSWORD, this.password)
-        .put(AGE, this.age)
-        .toString();
+        .put(AGE, this.age);
   }
 }

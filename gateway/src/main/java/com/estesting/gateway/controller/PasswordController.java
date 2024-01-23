@@ -1,7 +1,9 @@
 package com.estesting.gateway.controller;
 
 import static com.estesting.dependencies.commons.Endpoint.*;
+import static com.estesting.dependencies.commons.FormRequestAttributes.EMAIL;
 
+import com.estesting.gateway.form.Form;
 import com.estesting.gateway.form.PasswordChangeForm;
 import com.estesting.gateway.form.PasswordResetForm;
 import com.estesting.gateway.service.PasswordServiceImpl;
@@ -33,8 +35,8 @@ public class PasswordController {
   @SneakyThrows
   @PostMapping(value = PASSWORD_CHANGE_ENDPOINT, consumes = "application/json")
   public @ResponseBody ResponseEntity<String> changePassword(
-      @RequestBody @Valid PasswordChangeForm passwordChangeForm, BindingResult bindingResult) {
-    log.info("Password change");
+          @RequestBody @Valid PasswordChangeForm passwordChangeForm, BindingResult bindingResult) {
+    log.info("User: " + passwordChangeForm.getFormData().get(EMAIL) + " password change");
     return passwordServiceImpl.changePassword(passwordChangeForm);
   }
 }

@@ -40,7 +40,7 @@ public class SignInForm implements Form {
   private String password;
 
   @Override
-  public String getFormData() {
-    return new JSONObject().put(LOGIN, this.login).put(PASSWORD, this.password).toString();
+  public JSONObject getFormData() {
+    return new JSONObject().put(LOGIN, this.login).put(PASSWORD, this.password);
   }
 }

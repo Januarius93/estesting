@@ -1,16 +1,18 @@
 package com.estesting.gateway.form;
 
 import jakarta.validation.constraints.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.json.JSONObject;
 
 import static com.estesting.dependencies.commons.ErrorCodes.*;
 import static com.estesting.dependencies.commons.ErrorCodes.Password.*;
-import static com.estesting.dependencies.commons.FormRequestAttributes.PASSWORD;
+import static com.estesting.dependencies.commons.FormRequestAttributes.*;
 import static com.estesting.dependencies.commons.Regex.Password.*;
 
-
-public class PasswordChangeForm {
+@Builder
+public class PasswordChangeForm implements Form {
     @Getter
     @Setter
     @NotBlank(message = NEW_PASSWORD_CAN_NOT_BE_BLANK)
@@ -32,5 +34,18 @@ public class PasswordChangeForm {
                     message = PASSWORD_MUST_CONTAINS_SPECIAL_CHARS),
             @Pattern(regexp = MUST_CONTAINS_NO_WHITESPACE, message = PASSWORD_MUST_CONTAINS_NO_WHITESPACE)
     })
-    private String newPassword;
+    private String password;
+
+    @Getter
+    @Setter
+    private String oldPassword;
+
+    @Getter
+    @Setter
+    private String email;
+
+    @Override
+    public JSONObject getFormData() {
+        return new JSONObject().put(PASSWORD, this.password).put(OLD_PASSWORD, this.oldPassword).put(EMAIL, this.email);
+    }
 }

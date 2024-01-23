@@ -1,5 +1,8 @@
 package com.estesting.gateway.form;
 
+import org.json.JSONObject;
+
 public interface Form {
-  String getFormData();
+
+  JSONObject getFormData();
 }
