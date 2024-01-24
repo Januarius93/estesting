@@ -9,13 +9,12 @@ import com.estesting.gateway.AbstractUnitTest;
 import com.estesting.gateway.form.SignUpForm;
 import com.estesting.gateway.model.User;
 import com.estesting.gateway.model.UserEntityMapper;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testng.annotations.Test;
 
 @SpringBootTest
 public class UserRepositoryTest extends AbstractUnitTest {
+
   @Test
   public void withValidSignUpFormUserShouldBeCreatedInRepository() {
     SignUpForm validSignUpForm = buildValidSignUpForm();

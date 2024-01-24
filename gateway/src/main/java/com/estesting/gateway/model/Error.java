@@ -6,6 +6,9 @@ import lombok.Setter;
 
 @Getter
 public class Error {
-  @Setter private String code;
-  @Setter private List<String> message;
+
+  @Setter
+  private String code;
+  @Setter
+  private List<String> message;
 }

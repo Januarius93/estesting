@@ -17,8 +17,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SignUpServiceImpl implements SignUpService {
+
   private static final Logger log = LoggerFactory.getLogger(SignUpController.class);
-  @Autowired private UserRepository userRepository;
+  @Autowired
+  private UserRepository userRepository;
 
   @Override
   public ResponseEntity<String> createUser(SignUpForm signUpForm) {
@@ -33,8 +35,8 @@ public class SignUpServiceImpl implements SignUpService {
       log.error("User " + user.getUsername() + " already exist in db");
       return new ResponseEntity(
           new Message(
-                  HttpStatus.BAD_REQUEST,
-                  "User " + user.getUsername() + " already exist" + " in db")
+              HttpStatus.BAD_REQUEST,
+              "User " + user.getUsername() + " already exist" + " in db")
               .getResponseMessage(),
           HttpStatus.BAD_REQUEST);
     }

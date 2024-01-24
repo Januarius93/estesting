@@ -16,7 +16,9 @@ import org.testng.annotations.Test;
 @SpringBootTest
 @Import(SignUpServiceImpl.class)
 public class SignUpServiceImplTest extends AbstractUnitTest {
-  @Autowired private SignUpServiceImpl signUpServiceImpl = Mockito.mock(SignUpServiceImpl.class);
+
+  @Autowired
+  private SignUpServiceImpl signUpServiceImpl = Mockito.mock(SignUpServiceImpl.class);
 
   @Test(priority = 1)
   public void withValidSignUpFormSignUpServiceReturnsOK() {

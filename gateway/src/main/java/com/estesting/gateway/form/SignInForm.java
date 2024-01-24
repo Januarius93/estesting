@@ -1,6 +1,17 @@
 package com.estesting.gateway.form;
 
-import static com.estesting.dependencies.commons.ErrorCodes.*;
+import static com.estesting.dependencies.commons.ErrorCodes.LOGIN_CAN_NOT_BE_BLANK;
+import static com.estesting.dependencies.commons.ErrorCodes.LOGIN_CAN_NOT_BE_EMPTY;
+import static com.estesting.dependencies.commons.ErrorCodes.LOGIN_IS_MANDATORY;
+import static com.estesting.dependencies.commons.ErrorCodes.MAXIMUM_NUMBER_OF_CHARACTERS_50;
+import static com.estesting.dependencies.commons.ErrorCodes.MAXIMUM_NUMBER_OF_CHARACTERS_FOR_;
+import static com.estesting.dependencies.commons.ErrorCodes.MAXIMUM_NUMBER_OF_CHARACTERS_FOR_PASSWORD;
+import static com.estesting.dependencies.commons.ErrorCodes.MINIMUM_NUMBER_OF_CHARACTERS_10;
+import static com.estesting.dependencies.commons.ErrorCodes.MINIMUM_NUMBER_OF_CHARACTERS_3;
+import static com.estesting.dependencies.commons.ErrorCodes.MINIMUM_NUMBER_OF_CHARACTERS_FOR_;
+import static com.estesting.dependencies.commons.ErrorCodes.PASSWORD_CAN_NOT_BE_BLANK;
+import static com.estesting.dependencies.commons.ErrorCodes.PASSWORD_CAN_NOT_BE_EMPTY;
+import static com.estesting.dependencies.commons.ErrorCodes.PASSWORD_IS_MANDATORY;
 import static com.estesting.dependencies.commons.FormRequestAttributes.LOGIN;
 import static com.estesting.dependencies.commons.FormRequestAttributes.PASSWORD;
 
@@ -14,6 +25,7 @@ import org.json.JSONObject;
 
 @Builder
 public class SignInForm implements Form {
+
   @NotBlank(message = LOGIN_CAN_NOT_BE_BLANK)
   @NotEmpty(message = LOGIN_CAN_NOT_BE_EMPTY)
   @NotNull(message = LOGIN_IS_MANDATORY)

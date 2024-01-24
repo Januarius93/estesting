@@ -1,9 +1,9 @@
 package com.estesting.gateway.controller;
 
 import static com.estesting.dependencies.commons.Endpoint.SIGN_IN_ENDPOINT;
-import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpForm;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatResponseContainsErrorCodes;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatStatusCodeIs400;
+import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpForm;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,9 +30,11 @@ import org.testng.annotations.Test;
 @SpringBootTest
 @Import(SignInController.class)
 public class SignInControllerTest extends AbstractUnitTest {
+
   private SignInForm validSignInForm;
   private SignUpForm validSignUpForm;
-  @Autowired private UserRepository userRepository = Mockito.mock(UserRepository.class);
+  @Autowired
+  private UserRepository userRepository = Mockito.mock(UserRepository.class);
 
   @Test
   public void withValidSignInDataSignInShouldReturnSuccessWithHttp200() throws Exception {

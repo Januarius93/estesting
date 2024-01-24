@@ -23,7 +23,8 @@ import org.testng.annotations.Test;
 @Import(SignInServiceImpl.class)
 public class SignInServiceImplTest extends AbstractUnitTest {
 
-  @Autowired private SignInServiceImpl signInService = Mockito.mock(SignInServiceImpl.class);
+  @Autowired
+  private SignInServiceImpl signInService = Mockito.mock(SignInServiceImpl.class);
 
   @Test
   public void withNonExistentUserSignInServiceReturnsUserNotFound() {

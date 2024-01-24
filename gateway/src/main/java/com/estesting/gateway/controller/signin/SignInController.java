@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Validated
 public class SignInController {
+
   private static final Logger log = LoggerFactory.getLogger(SignInController.class);
-  @Autowired private SignInServiceImpl signInServiceImpl;
+  @Autowired
+  private SignInServiceImpl signInServiceImpl;
 
   @SneakyThrows
   @PostMapping(value = SIGN_IN_ENDPOINT, consumes = "application/json")

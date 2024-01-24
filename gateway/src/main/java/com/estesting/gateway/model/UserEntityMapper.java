@@ -8,7 +8,9 @@ import lombok.SneakyThrows;
 
 @Getter
 public class UserEntityMapper {
-  @Setter private Form userForm;
+
+  @Setter
+  private Form userForm;
 
   public UserEntityMapper(Form userForm) {
     this.userForm = userForm;

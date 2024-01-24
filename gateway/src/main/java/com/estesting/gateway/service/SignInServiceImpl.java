@@ -19,8 +19,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SignInServiceImpl implements SignInService {
+
   private static final Logger log = LoggerFactory.getLogger(SignUpController.class);
-  @Autowired private UserRepository userRepository;
+  @Autowired
+  private UserRepository userRepository;
 
   @Override
   public ResponseEntity<String> signIn(SignInForm signInForm) {
@@ -32,7 +34,7 @@ public class SignInServiceImpl implements SignInService {
       log.error("User: " + signInForm.getLogin() + " not found");
       return new ResponseEntity(
           new Message(
-                  HttpStatus.NOT_FOUND, List.of("User: " + signInForm.getLogin() + " not found"))
+              HttpStatus.NOT_FOUND, List.of("User: " + signInForm.getLogin() + " not found"))
               .getResponseMessage(),
           HttpStatus.NOT_FOUND);
     }
@@ -54,7 +56,7 @@ public class SignInServiceImpl implements SignInService {
     }
     return new ResponseEntity(
         new Message(
-                HttpStatus.OK, "Authentication for user: " + signInForm.getLogin() + " succeeded")
+            HttpStatus.OK, "Authentication for user: " + signInForm.getLogin() + " succeeded")
             .getResponseMessage(),
         HttpStatus.OK);
   }

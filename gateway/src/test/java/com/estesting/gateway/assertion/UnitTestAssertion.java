@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MvcResult;
 
 public class UnitTestAssertion extends AbstractUnitTest {
+
   public static void assertThatStatusCodeIs400(MvcResult mvcResult) {
     assertThat(
         mvcResult.getResponse().getStatus() + " should be " + HttpStatus.BAD_REQUEST.value(),

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @Slf4j
 @org.springframework.web.bind.annotation.ControllerAdvice
 public class ControllerAdvice extends ResponseEntityExceptionHandler {
+
   private static final Logger log = LoggerFactory.getLogger(SignInController.class);
 
   @ExceptionHandler(ConstraintViolationException.class)

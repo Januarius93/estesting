@@ -1,9 +1,9 @@
 package com.estesting.gateway.controller;
 
 import static com.estesting.dependencies.commons.Endpoint.SIGN_UP_ENDPOINT;
-import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpForm;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatResponseContainsErrorCodes;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatStatusCodeIs400;
+import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpForm;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

@@ -1,3 +1,5 @@
 package com.estesting.gateway.controller;
 
-public class AbstractController {}
+public class AbstractController {
+
+}

@@ -1,20 +1,21 @@
 package com.estesting.gateway.data;
 
-import com.estesting.gateway.form.SignUpForm;
-
 import static com.estesting.gateway.data.DataRandomizer.generateUserEmailWithSoftRandom;
 import static com.estesting.gateway.data.DataRandomizer.generateUserNameWithSoftRandom;
+
+import com.estesting.gateway.form.SignUpForm;
 
 public class SignUpFormTestData {
 
   public static SignUpForm buildValidSignUpFormWithPassword(String password) {
     return SignUpForm.builder()
-            .email(generateUserEmailWithSoftRandom())
-            .username(generateUserNameWithSoftRandom())
-            .password(password)
-            .age(18)
-            .build();
+        .email(generateUserEmailWithSoftRandom())
+        .username(generateUserNameWithSoftRandom())
+        .password(password)
+        .age(18)
+        .build();
   }
+
   public static SignUpForm buildValidSignUpForm() {
     return SignUpForm.builder()
         .email("somepropermail@mail.com")
@@ -119,7 +120,7 @@ public class SignUpFormTestData {
                 + "                + \"agfwvmxbecvhjvrzlijnmorxkzbqhghbtxwfgkagijhsauyqxaj\\n\"\n"
                 + "                + \"pezfpohldpulgaueppxdfligucpgplwufurvgazoxtuwelbukch\"")
         .password("1q2w1qQAWS" +
-                "!@#qaynumgjnnazkuhempmwlwqpmbonaasslpuycphpijnbmeybfsefsefsefsefsefsefseziolruzrugznekcafafrmgnlkiwxuwwuogsgbtqclkpjxmebnyhksawgpmpwpzecsvqopjansawopfhiqlazrobgtqgabacpxrnkbxzemfdhfxnlxbcyobyfxcgatlultqlwmizwc")
+            "!@#qaynumgjnnazkuhempmwlwqpmbonaasslpuycphpijnbmeybfsefsefsefsefsefsefseziolruzrugznekcafafrmgnlkiwxuwwuogsgbtqclkpjxmebnyhksawgpmpwpzecsvqopjansawopfhiqlazrobgtqgabacpxrnkbxzemfdhfxnlxbcyobyfxcgatlultqlwmizwc")
 
         .age(101)
         .build();

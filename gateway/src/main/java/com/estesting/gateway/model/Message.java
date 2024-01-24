@@ -9,10 +9,13 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 public class Message {
+
   protected static ObjectMapper objectMapper = new ObjectMapper();
   private Map<String, Object> responseMessage;
-  @Setter private String code;
-  @Setter private List<String> message;
+  @Setter
+  private String code;
+  @Setter
+  private List<String> message;
 
   public <E> Message(HttpStatus httpStatus, List<String> messages) {
     this.code = httpStatus.getReasonPhrase();
