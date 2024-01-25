@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 public class Message {
 
   protected static ObjectMapper objectMapper = new ObjectMapper();
-  private Map<String, Object> responseMessage;
+  private final Map<String, Object> responseMessage;
   @Setter
   private String code;
   @Setter

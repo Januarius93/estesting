@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 public class PasswordServiceTest extends AbstractUnitTest {
 
   @Autowired
-  private PasswordServiceImpl passwordService = Mockito.mock(PasswordServiceImpl.class);
+  private final PasswordServiceImpl passwordService = Mockito.mock(PasswordServiceImpl.class);
 
   @Test
   public void withNonExistentEmailUserPasswordResetShouldReturnsEmailNotFound() {

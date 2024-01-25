@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
 public class SignInServiceImplTest extends AbstractUnitTest {
 
   @Autowired
-  private SignInServiceImpl signInService = Mockito.mock(SignInServiceImpl.class);
+  private final SignInServiceImpl signInService = Mockito.mock(SignInServiceImpl.class);
 
   @Test
   public void withNonExistentUserSignInServiceReturnsUserNotFound() {
@@ -65,7 +65,6 @@ public class SignInServiceImplTest extends AbstractUnitTest {
   @Test
   public void withIncorrectPasswordSignInServiceReturnInvalidPasswordError() {
     SignUpForm validSignUpForm = buildOtherValidSignUpForm();
-    String rawPassword = validSignUpForm.getPassword();
 
     validSignUpForm.setPassword(new PasswordEncoderImpl().encode(validSignUpForm.getPassword()));
     User user1 = new UserEntityMapper(validSignUpForm).generateUser();

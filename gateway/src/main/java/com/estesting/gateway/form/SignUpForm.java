@@ -51,6 +51,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONObject;
 
+@Getter
 @Builder
 public class SignUpForm implements Form {
 
@@ -65,7 +66,6 @@ public class SignUpForm implements Form {
   @Size(
       max = 50,
       message = MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + EMAIL + MAXIMUM_NUMBER_OF_CHARACTERS_50)
-  @Getter
   private String email;
 
   @NotBlank(message = USERNAME_CAN_NOT_BE_BLANK)
@@ -77,10 +77,8 @@ public class SignUpForm implements Form {
   @Size(
       max = 50,
       message = MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + USERNAME + MAXIMUM_NUMBER_OF_CHARACTERS_50)
-  @Getter
   private String username;
 
-  @Getter
   @Setter
   @NotBlank(message = PASSWORD_CAN_NOT_BE_BLANK)
   @NotNull(message = PASSWORD_CAN_NOT_BE_NULL)
@@ -103,7 +101,6 @@ public class SignUpForm implements Form {
   })
   private String password;
 
-  @Getter
   @NotNull(message = AGE_CAN_NOT_BE_NULL)
   @Positive(message = AGE_CAN_NOT_BE_NEGATIVE)
   @Min(value = 18, message = AGE_CAN_NOT_BE_SMALLER_THAN_18)

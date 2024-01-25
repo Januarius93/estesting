@@ -31,11 +31,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONObject;
 
+@Setter
+@Getter
 @Builder
 public class PasswordChangeForm implements Form {
 
-  @Getter
-  @Setter
   @NotBlank(message = NEW_PASSWORD_CAN_NOT_BE_BLANK)
   @NotNull(message = NEW_PASSWORD_CAN_NOT_BE_NULL)
   @NotEmpty(message = NEW_PASSWORD_CAN_NOT_BE_EMPTY)
@@ -57,12 +57,8 @@ public class PasswordChangeForm implements Form {
   })
   private String password;
 
-  @Getter
-  @Setter
   private String oldPassword;
 
-  @Getter
-  @Setter
   private String email;
 
   @Override

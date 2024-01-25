@@ -23,7 +23,6 @@ import org.testng.annotations.Test;
 @SpringBootTest
 @Import(SignUpController.class)
 public class SignUpControllerTest extends AbstractUnitTest {
-
   @Test
   @SneakyThrows
   public void withValidSignUpDataSignupShouldReturnSuccessAndHttp200() {

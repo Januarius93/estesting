@@ -4,11 +4,9 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
+@Setter
 @Getter
 public class Error {
-
-  @Setter
   private String code;
-  @Setter
   private List<String> message;
 }

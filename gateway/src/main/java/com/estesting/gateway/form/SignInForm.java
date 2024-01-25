@@ -23,6 +23,7 @@ import lombok.Builder;
 import lombok.Getter;
 import org.json.JSONObject;
 
+@Getter
 @Builder
 public class SignInForm implements Form {
 
@@ -35,7 +36,6 @@ public class SignInForm implements Form {
   @Size(
       max = 50,
       message = MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + LOGIN + MAXIMUM_NUMBER_OF_CHARACTERS_50)
-  @Getter
   private String login;
 
   @NotBlank(message = PASSWORD_CAN_NOT_BE_BLANK)
@@ -48,7 +48,6 @@ public class SignInForm implements Form {
       max = 200,
       message =
           MAXIMUM_NUMBER_OF_CHARACTERS_FOR_ + PASSWORD + MAXIMUM_NUMBER_OF_CHARACTERS_FOR_PASSWORD)
-  @Getter
   private String password;
 
   @Override

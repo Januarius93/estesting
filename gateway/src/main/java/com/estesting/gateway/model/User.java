@@ -44,7 +44,7 @@ public class User {
   @Getter
   private String password;
 
-  @Column(name = "OLD_PASSWORD", length = 200, nullable = true)
+  @Column(name = "OLD_PASSWORD", length = 200)
   @Getter
   private String oldPassword;
 
