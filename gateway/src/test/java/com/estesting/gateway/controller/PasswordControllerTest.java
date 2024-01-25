@@ -19,10 +19,7 @@ import org.testng.annotations.Test;
 @Import(PasswordController.class)
 public class PasswordControllerTest extends AbstractUnitTest {
 
-  private static final Logger log = LoggerFactory.getLogger(PasswordController.class);
-
   private static final String PASSWORD_CHANGE = PASSWORD_ENDPOINT + PASSWORD_CHANGE_ENDPOINT;
-
   @Test
   public void withExistingEmailDataPasswordResetShouldReturnSuccessWithHttp200() {
   }

@@ -17,6 +17,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONObject;
 
+@Setter
 @Getter
 public class PasswordResetForm implements Form {
 
@@ -25,7 +26,6 @@ public class PasswordResetForm implements Form {
   @NotEmpty(message = EMAIL_CAN_NOT_BE_EMPTY)
   @Pattern(regexp = EMAIL_REGEX, message = THIS_IS_NOT_EMAIL)
   @Email(message = EMAIL_MUST_BE_WELL_FORMATED)
-  @Setter
   private String email;
 
   @Override

@@ -9,12 +9,6 @@ public class PasswordChangeFormTestData {
         .oldPassword(oldPassword).build();
   }
 
-  public static PasswordChangeForm buildInvalidPasswordPasswordChangeForm(String email,
-      String oldPassword) {
-    return PasswordChangeForm.builder().email(email).password("test").oldPassword(oldPassword)
-        .build();
-  }
-
   public static PasswordChangeForm buildInvalidOldPasswordPasswordChangeForm(String email) {
     return PasswordChangeForm.builder().email(email).password("!Q@W1q2w1q2w")
         .oldPassword("INVALID_PWD").build();

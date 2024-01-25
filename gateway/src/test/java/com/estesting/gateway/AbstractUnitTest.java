@@ -25,11 +25,11 @@ import org.testng.annotations.BeforeClass;
 
 public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests {
 
-  protected static ObjectMapper objectMapper = new ObjectMapper();
+  protected static final ObjectMapper objectMapper = new ObjectMapper();
   protected MockMvc mockMvc;
   protected MvcResult mvcResult;
   @Autowired
-  protected UserRepository userRepository = Mockito.mock(UserRepository.class);
+  protected final UserRepository  userRepository = Mockito.mock(UserRepository.class);
   @Autowired
   private WebApplicationContext webApplicationContext;
 

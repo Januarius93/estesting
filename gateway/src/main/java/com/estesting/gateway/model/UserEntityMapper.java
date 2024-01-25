@@ -6,10 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
 
+@Setter
 @Getter
 public class UserEntityMapper {
 
-  @Setter
   private Form userForm;
 
   public UserEntityMapper(Form userForm) {
