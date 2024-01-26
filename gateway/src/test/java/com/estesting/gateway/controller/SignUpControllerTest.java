@@ -12,7 +12,9 @@ import com.estesting.gateway.AbstractUnitTest;
 import com.estesting.gateway.controller.signup.SignUpController;
 import com.estesting.gateway.data.dataprovider.UnitTestDataProvider;
 import com.estesting.gateway.form.SignUpForm;
+
 import java.util.List;
+
 import lombok.SneakyThrows;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
@@ -23,32 +25,20 @@ import org.testng.annotations.Test;
 @SpringBootTest
 @Import(SignUpController.class)
 public class SignUpControllerTest extends AbstractUnitTest {
-  @Test
-  @SneakyThrows
-  public void withValidSignUpDataSignupShouldReturnSuccessAndHttp200() {
-    SignUpForm validSignupForm = buildValidSignUpForm();
-    mockMvc
-        .perform(
-            put(SIGN_UP_ENDPOINT)
-                .content(validSignupForm.getFormData().toString())
-                .contentType(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk())
-        .andExpect(content().json("{\"code\":\"OK\",\"message\":[\"User: someusername created\"]}"))
-        .andReturn();
-  }
+    @Test
+    @SneakyThrows
+    public void withValidSignUpDataSignupShouldReturnSuccessAndHttp200() {
+        SignUpForm validSignupForm = buildValidSignUpForm();
+        sendMockedPutRequest(validSignupForm, SIGN_UP_ENDPOINT, status().isOk(),
+                "{\"code\":\"OK\",\"message\":[\"User: someusername created\"]}");
+    }
 
-  @SneakyThrows
-  @Test(dataProvider = "invalidDataSignUpForm", dataProviderClass = UnitTestDataProvider.class)
-  public void withInvalidSignupDataShouldReturnErrorsAnd400(
-      SignUpForm signUpFormData, List<String> errorCodes) {
-    MvcResult mvcResult =
-        mockMvc
-            .perform(
-                put(SIGN_UP_ENDPOINT)
-                    .content(signUpFormData.getFormData().toString())
-                    .contentType(MediaType.APPLICATION_JSON))
-            .andReturn();
-    assertThatStatusCodeIs400(mvcResult);
-    assertThatResponseContainsErrorCodes(mvcResult, errorCodes);
-  }
+    @SneakyThrows
+    @Test(dataProvider = "invalidDataSignUpForm", dataProviderClass = UnitTestDataProvider.class)
+    public void withInvalidSignupDataShouldReturnErrorsAnd400(
+            SignUpForm signUpFormData, List<String> errorCodes) {
+        MvcResult mvcResult = sendMockedPutRequestAndReturn(signUpFormData, SIGN_UP_ENDPOINT);
+        assertThatStatusCodeIs400(mvcResult);
+        assertThatResponseContainsErrorCodes(mvcResult, errorCodes);
+    }
 }
