@@ -1,6 +1,7 @@
 package com.estesting.gateway.controller;
 
 import static com.estesting.dependencies.commons.Endpoint.SIGN_IN_ENDPOINT;
+import static com.estesting.dependencies.commons.Endpoint.SIGN_UP_ENDPOINT;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatResponseContainsErrorCodes;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatStatusCodeIs400;
 import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpForm;
@@ -23,8 +24,7 @@ import java.util.List;
 import lombok.SneakyThrows;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.MvcResult;
 import org.testng.annotations.Test;
 
 @SpringBootTest
@@ -44,32 +44,16 @@ public class SignInControllerTest extends AbstractUnitTest {
                 .login(validSignUpForm.getEmail())
                 .password(validSignUpForm.getPassword())
                 .build();
-
-        mockMvc
-                .perform(
-                        MockMvcRequestBuilders.post(SIGN_IN_ENDPOINT)
-                                .content(validSignInForm.getFormData().toString())
-                                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(
-                        content()
-                                .json(
-                                        "{\"message\":\"Authentication for user: somepropermail@mail.com succeeded\","
-                                                + "\"code\":\"OK\"}"))
-                .andReturn();
+        sendMockedPostRequest(validSignInForm,SIGN_IN_ENDPOINT,status().isOk(),
+                "{\"message\":\"Authentication for user: somepropermail@mail.com succeeded\","
+                + "\"code\":\"OK\"}");
     }
 
     @SneakyThrows
     @Test(dataProvider = "invalidSignInForm", dataProviderClass = UnitTestDataProvider.class)
     public void withInvalidSignInDataSignInShouldReturnErrorsAndHttp400(
             SignInForm signInForm, List<String> errorCodes) {
-        mvcResult =
-                mockMvc
-                        .perform(
-                                post(SIGN_IN_ENDPOINT)
-                                        .content(String.valueOf(signInForm.getFormData()))
-                                        .contentType(MediaType.APPLICATION_JSON))
-                        .andReturn();
+        MvcResult mvcResult = sendMockedPostRequestAndReturn(signInForm, SIGN_IN_ENDPOINT);
         assertThatStatusCodeIs400(mvcResult);
         assertThatResponseContainsErrorCodes(mvcResult, errorCodes);
     }

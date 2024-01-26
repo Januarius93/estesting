@@ -1,7 +1,9 @@
 package com.estesting.gateway;
 
+import static com.estesting.dependencies.commons.Endpoint.SIGN_UP_ENDPOINT;
 import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpForm;
 import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpFormWithPassword;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import com.estesting.gateway.form.Form;
@@ -27,7 +29,6 @@ public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests 
 
   protected static final ObjectMapper objectMapper = new ObjectMapper();
   protected MockMvc mockMvc;
-  protected MvcResult mvcResult;
   @Autowired
   protected final UserRepository  userRepository = Mockito.mock(UserRepository.class);
   @Autowired
@@ -50,7 +51,7 @@ public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests 
   }
 
   @SneakyThrows
-  protected void sendMockedRequest(Form form, String endpoint, ResultMatcher status,
+  protected void sendMockedPostRequest(Form form, String endpoint, ResultMatcher status,
       String expectedMessage) {
     mockMvc
         .perform(
@@ -63,6 +64,40 @@ public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests 
                 .json(
                     expectedMessage))
         .andReturn();
+  }
+
+  @SneakyThrows
+  protected void sendMockedPutRequest(Form form, String endpoint, ResultMatcher status,
+                                       String expectedMessage) {
+    mockMvc
+            .perform(
+                    MockMvcRequestBuilders.put(endpoint)
+                            .content(form.getFormData().toString())
+                            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status)
+            .andExpect(
+                    content()
+                            .json(
+                                    expectedMessage))
+            .andReturn();
+  }
+  @SneakyThrows
+  protected MvcResult sendMockedPostRequestAndReturn(Form form, String endpoint){
+    return mockMvc
+            .perform(
+                    MockMvcRequestBuilders.post(endpoint)
+                            .content(form.getFormData().toString())
+                            .contentType(MediaType.APPLICATION_JSON))
+            .andReturn();
+  }
+  @SneakyThrows
+  protected MvcResult sendMockedPutRequestAndReturn(Form form, String endpoint){
+   return mockMvc
+            .perform(
+                    MockMvcRequestBuilders.put(endpoint)
+                            .content(form.getFormData().toString())
+                            .contentType(MediaType.APPLICATION_JSON))
+            .andReturn();
   }
 
   @BeforeClass

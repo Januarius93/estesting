@@ -34,7 +34,7 @@ public class PasswordControllerTest extends AbstractUnitTest {
     User user = generateUser(TEST_PASSWORD);
     PasswordChangeForm validPasswordChangeForm = buildValidPasswordChangeForm(user.getEmail(),
         TEST_PASSWORD);
-    sendMockedRequest(validPasswordChangeForm, PASSWORD_CHANGE, status().isOk(),
+    sendMockedPostRequest(validPasswordChangeForm, PASSWORD_CHANGE, status().isOk(),
         "{\"message\":\"Password changed for: " + user.getEmail() + "\","
             + "\"code\":\"OK\"}");
   }
@@ -45,7 +45,7 @@ public class PasswordControllerTest extends AbstractUnitTest {
     User user = generateUser(TEST_PASSWORD);
     PasswordChangeForm validPasswordChangeForm = buildInvalidOldPasswordPasswordChangeForm(
         user.getEmail());
-    sendMockedRequest(validPasswordChangeForm, PASSWORD_CHANGE, status().isInternalServerError(),
+    sendMockedPostRequest(validPasswordChangeForm, PASSWORD_CHANGE, status().isInternalServerError(),
         "{\"message\":\"Old password for:  " + user.getEmail() + " is incorrect\","
             + "\"code\":\"INTERNAL_SERVER_ERROR\"}");
   }
