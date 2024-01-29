@@ -1,7 +1,7 @@
 package com.estesting.gateway.service;
 
 import com.estesting.gateway.PasswordEncoderImpl;
-import com.estesting.gateway.controller.signup.SignUpController;
+import com.estesting.gateway.controller.signin.SignInController;
 import com.estesting.gateway.exceptions.PasswordDoesNotMatchException;
 import com.estesting.gateway.form.SignInForm;
 import com.estesting.gateway.model.Message;
@@ -20,20 +20,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import static com.estesting.gateway.service.Commons.getNonEmptyUser;
+
 @Service
 public class SignInServiceImpl implements SignInService {
 
-    private static final Logger log = LoggerFactory.getLogger(SignUpController.class);
+    private static final Logger log = LoggerFactory.getLogger(SignInController.class);
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private JwtService jwtService;
 
     @Override
     public ResponseEntity<String> signIn(SignInForm signInForm) {
         List<User> userEmailLogin = userRepository.findByEmail(signInForm.getLogin());
         List<User> userUsernameLogin = userRepository.findByUsername(signInForm.getLogin());
         try {
-            getNonEmptyUser(userEmailLogin, userUsernameLogin);
-
+           getNonEmptyUser(userEmailLogin, userUsernameLogin);
         } catch (Exception exception) {
             log.error("User: " + signInForm.getLogin() + " not found");
             return new ResponseEntity(
@@ -58,22 +62,11 @@ public class SignInServiceImpl implements SignInService {
                     new Message(HttpStatus.BAD_REQUEST, "Invalid password").getResponseMessage(),
                     HttpStatus.BAD_REQUEST);
         }
+        String jwtToken = jwtService.generateToken(nonEmptyUser);
         return new ResponseEntity(
                 new Message(
-                        HttpStatus.OK, "Authentication for user: " + signInForm.getLogin() + " succeeded")
+                        HttpStatus.OK, jwtToken,"Authentication for user: " + signInForm.getLogin() + " succeeded")
                         .getResponseMessage(),
                 HttpStatus.OK);
-    }
-
-    private User getNonEmptyUser(List<User> emailUserList, List<User> usernameUserList) {
-        return Objects.requireNonNull(Stream.of(emailUserList, usernameUserList)
-                        .filter(userList -> !userList.isEmpty())
-                        .toList()
-                        .stream()
-                        .findFirst()
-                        .orElse(null))
-                .stream()
-                .findFirst()
-                .orElse(null);
     }
 }

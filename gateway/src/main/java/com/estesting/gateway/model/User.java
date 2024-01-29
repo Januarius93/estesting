@@ -12,11 +12,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Setter
 @Getter
@@ -25,17 +27,19 @@ import lombok.Setter;
 @Builder
 @Entity(name = "user_entity")
 @Table(name = "USERS")
-public class User {
+@Data
+public class User implements UserDetails {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  private String login;
-
   @Pattern(regexp = EMAIL_REGEX, message = THIS_IS_NOT_EMAIL)
   @Column(name = "EMAIL", length = 50, nullable = false, unique = true)
   private String email;
+
+  @Column(name = "LOGIN", length = 50)
+  private String login;
 
   @Column(name = "USERNAME", length = 50, nullable = false, unique = true)
   private String username;
@@ -57,5 +61,30 @@ public class User {
   public User(String login, String password) {
     this.username = login;
     this.password = password;
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return List.of(new SimpleGrantedAuthority(role.name()));
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
   }
 }

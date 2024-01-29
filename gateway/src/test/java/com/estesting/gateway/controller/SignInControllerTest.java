@@ -1,7 +1,6 @@
 package com.estesting.gateway.controller;
 
-import static com.estesting.dependencies.commons.Endpoint.SIGN_IN_ENDPOINT;
-import static com.estesting.dependencies.commons.Endpoint.SIGN_UP_ENDPOINT;
+import static com.estesting.dependencies.commons.Endpoint.*;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatResponseContainsErrorCodes;
 import static com.estesting.gateway.assertion.UnitTestAssertion.assertThatStatusCodeIs400;
 import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpForm;
@@ -44,7 +43,7 @@ public class SignInControllerTest extends AbstractUnitTest {
                 .login(validSignUpForm.getEmail())
                 .password(validSignUpForm.getPassword())
                 .build();
-        sendMockedPostRequest(validSignInForm,SIGN_IN_ENDPOINT,status().isOk(),
+        sendMockedPostRequest(validSignInForm,USER_ENDPOINT+SIGN_IN_ENDPOINT,status().isOk(),
                 "{\"message\":\"Authentication for user: somepropermail@mail.com succeeded\","
                 + "\"code\":\"OK\"}");
     }
@@ -53,7 +52,7 @@ public class SignInControllerTest extends AbstractUnitTest {
     @Test(dataProvider = "invalidSignInForm", dataProviderClass = UnitTestDataProvider.class)
     public void withInvalidSignInDataSignInShouldReturnErrorsAndHttp400(
             SignInForm signInForm, List<String> errorCodes) {
-        MvcResult mvcResult = sendMockedPostRequestAndReturn(signInForm, SIGN_IN_ENDPOINT);
+        MvcResult mvcResult = sendMockedPostRequestAndReturn(signInForm, USER_ENDPOINT+SIGN_IN_ENDPOINT);
         assertThatStatusCodeIs400(mvcResult);
         assertThatResponseContainsErrorCodes(mvcResult, errorCodes);
     }
