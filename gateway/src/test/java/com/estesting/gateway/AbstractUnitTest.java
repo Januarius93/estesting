@@ -5,6 +5,7 @@ import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpForm
 import static com.estesting.gateway.data.SignUpFormTestData.buildValidSignUpFormWithPassword;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import com.estesting.gateway.form.Form;
 import com.estesting.gateway.form.SignUpForm;
@@ -21,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.testng.annotations.BeforeClass;
@@ -75,10 +77,7 @@ public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests 
                             .content(form.getFormData().toString())
                             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status)
-            .andExpect(
-                    content()
-                            .json(
-                                    expectedMessage))
+            .andExpect(jsonPath("$.message").value(expectedMessage))
             .andReturn();
   }
   @SneakyThrows

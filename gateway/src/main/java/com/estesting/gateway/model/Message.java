@@ -28,4 +28,10 @@ public class Message {
     this.message = List.of(message);
     responseMessage = Map.of("code", httpStatus, "message", message);
   }
+
+  public <E> Message(HttpStatus httpStatus,String jwtToken, String message) {
+    this.code = httpStatus.getReasonPhrase();
+    this.message = List.of(message);
+    responseMessage = Map.of("code", httpStatus,"jwtToken", jwtToken, "message", message);
+  }
 }
