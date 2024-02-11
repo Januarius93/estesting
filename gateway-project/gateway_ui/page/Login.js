@@ -1,4 +1,7 @@
+import { render } from "react-dom";
 import { StyleSheet, Text, View } from "react-native";
 
-const Login = () => {};
+const Login = () => {
+  return {};
+};
 export default Login;

@@ -1,20 +1,41 @@
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  Button,
+  SafeAreaView,
+  Alert,
+  Image,
+  View,
+  Dimensions,
+} from "react-native";
 
 import LinkComponent from "../component/LinkComponent";
 const Home = () => {
   return (
-    <View style={styles.homeStyle}>
+    <SafeAreaView style={styles.homeStyle}>
+      <View style={styles.testView}></View>
+      <Image source={require("../assets/favicon.png")}></Image>
       <Text>This is main Esteting page</Text>
       <Text>In construction...</Text>
-
-      <Text>
-        Click to <LinkComponent url="/signup" pageName="signup" />
-      </Text>
-
-      <Text>
-        Click to <LinkComponent url="/signin" pageName="signin" />
-      </Text>
-    </View>
+      <Text>Click to signup</Text>
+      <Button
+        color={"#C9D5E1"}
+        title="signup"
+        onPress={() =>
+          Alert.alert("soemthuing", "blahblabh", [
+            { text: "Yeah" },
+            { text: "Fck" },
+          ])
+        }
+      ></Button>
+      <Text>Click to signin</Text>
+      <Button
+        backgroundColor="red"
+        color={"#C9D5E1"}
+        title="signin"
+        onPress={() => alert("!!!")}
+      ></Button>
+    </SafeAreaView>
   );
 };
 
@@ -23,8 +44,12 @@ export default Home;
 const styles = StyleSheet.create({
   homeStyle: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#3398FF",
     alignItems: "center",
     justifyContent: "center",
+  },
+  testView: {
+    backgroundColor: "black",
+    flex: 0.1,
   },
 });
