@@ -21,12 +21,7 @@ const Home = () => {
       <Button
         color={"#C9D5E1"}
         title="signup"
-        onPress={() =>
-          Alert.alert("soemthuing", "blahblabh", [
-            { text: "Yeah" },
-            { text: "Fck" },
-          ])
-        }
+        onPress={() => navigation.navigate("Signup")}
       ></Button>
       <Text>Click to signin</Text>
       <Button
@@ -45,7 +40,7 @@ const styles = StyleSheet.create({
   homeStyle: {
     flex: 1,
     backgroundColor: "#3398FF",
-    alignItems: "center",
+    alignItems: "",
     justifyContent: "center",
   },
   testView: {
